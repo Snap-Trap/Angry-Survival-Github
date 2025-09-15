@@ -183,7 +183,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -226,6 +226,7 @@ GameObject:
   - component: {fileID: 1037151020}
   - component: {fileID: 1037151019}
   - component: {fileID: 1037151017}
+  - component: {fileID: 1037151022}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -291,7 +292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 8a42bdc2b9c17f545ab4be3bcb03b050, type: 2}
-  player: {fileID: 0}
+  canMove: 1
 --- !u!212 &1037151020
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -359,6 +360,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1037151022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037151016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d0389435830ad84482cebd93fe4860a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyData: {fileID: 0}
+  canMove: 1
+  player: {fileID: 0}
 --- !u!1 &1528098131
 GameObject:
   m_ObjectHideFlags: 0
@@ -559,6 +575,7 @@ MonoBehaviour:
     m_Flags: 0
   speed: 1.5
   movementDirection: {x: 0, y: 0}
+  canMove: 1
 --- !u!61 &1528098135
 BoxCollider2D:
   m_ObjectHideFlags: 0

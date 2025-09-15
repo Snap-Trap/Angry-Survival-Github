@@ -6,12 +6,13 @@ public interface IDamagable
 }
 public interface IEnemyBehaviour
 {
-
+    public void Initialize(EnemySO enemyData);
+    public void Movement();
 }
 
-public interface IMove
+public interface IMovable
 {
-    public void Movement(float speed);
+    public void Movable(bool value);
 }
 
 public interface IDroppable

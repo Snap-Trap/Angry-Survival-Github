@@ -3,54 +3,49 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class BaseEnemy : MonoBehaviour, IDamagable, IMove
+public class BaseEnemy : MonoBehaviour, IDamagable, IMovable
 {
     public EnemySO enemyData;
-    public Transform player;
+    private IEnemyBehaviour enemyBehaviour;
 
-    public void Start()
+    public bool canMove = true;
+
+    public void Awake()
     {
-        player = GameObject.Find("Player").transform;
+        
+
+        if (TryGetComponent<IEnemyBehaviour>(out enemyBehaviour))
+        {
+            enemyBehaviour.Initialize(enemyData);
+        }
+        else
+        {
+            Debug.LogWarning("No IEnemyBehaviour component found on " + gameObject.name);
+        }
     }
 
     public void Update()
     {
-        Movement(enemyData.enemySpeed);
+        enemyBehaviour.Movement();
+    }
+    public void Die()
+    {
+        Debug.Log($"{gameObject.name} has died.");
+        Destroy(gameObject);
     }
 
-    public void Movement(float speed)
-    {
-        if (player.position.x > transform.position.x)
-        {
-            transform.Translate(Vector2.right * speed * Time.deltaTime);
-        }
-        else if (player.position.x < transform.position.x)
-        {
-            transform.Translate(Vector2.right * -speed * Time.deltaTime);
-        }
-        if (player.position.y > transform.position.y)
-        {
-            transform.Translate(Vector2.down * -speed * Time.deltaTime);
-        }
-        else if (player.position.y < transform.position.y)
-        {
-            transform.Translate(Vector2.down * speed * Time.deltaTime);
-        }
-    }
     public void TakeDamage(float damage)
     {
         enemyData.enemyHealth -= damage;
         Debug.Log($"{gameObject.name} took {damage} damage, remaining health: {enemyData.enemyHealth}");
-
         if (enemyData.enemyHealth <= 0)
         {
             Die();
         }
     }
 
-    public void Die()
+    public void Movable(bool value)
     {
-        Destroy(gameObject);
+        canMove = true;
     }
-
 }

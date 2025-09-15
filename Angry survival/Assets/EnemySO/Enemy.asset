@@ -15,7 +15,7 @@ MonoBehaviour:
   enemyName: Bob
   enemyDamage: 0
   enemyHealth: 0
-  enemySpeed: 1
+  enemySpeed: 1.5
   xp: 0
   dropRatio: 0
   goldAmount: 0

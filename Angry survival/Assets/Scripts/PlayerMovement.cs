@@ -4,13 +4,15 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
-public class PlayerMovement : MonoBehaviour, IMove
+public class PlayerMovement : MonoBehaviour, IMovable
 {
     public InputAction moveLeft, moveRight, moveUp, moveDown;
 
     public float speed = 5;
 
     public Vector2 movementDirection = Vector2.zero;
+
+    public bool canMove = true;
 
     public void Update()
     {
@@ -20,27 +22,33 @@ public class PlayerMovement : MonoBehaviour, IMove
 
     public void Movement(float speed)
     {
-        movementDirection = Vector2.zero;
-        if (moveLeft.ReadValue<float>() == 1)
+        if (canMove)
         {
-            movementDirection.x = -speed;
+            movementDirection = Vector2.zero;
+            if (moveLeft.ReadValue<float>() == 1)
+            {
+                movementDirection.x = -speed;
+            }
+            if (moveRight.ReadValue<float>() == 1)
+            {
+                movementDirection.x = speed;
+            }
+            if (moveUp.ReadValue<float>() == 1)
+            {
+                movementDirection.y = speed;
+            }
+            if (moveDown.ReadValue<float>() == 1)
+            {
+                movementDirection.y = -speed;
+            }
+            transform.Translate(movementDirection * speed * Time.deltaTime);
         }
-        if (moveRight.ReadValue<float>() == 1)
-        {
-            movementDirection.x = speed;
-        }
-        if (moveUp.ReadValue<float>() == 1)
-        {
-            movementDirection.y = speed;
-        }
-        if (moveDown.ReadValue<float>() == 1)
-        {
-            movementDirection.y = -speed;
-        }
-        transform.Translate(movementDirection * speed * Time.deltaTime);
     }
 
-
+    public void Movable(bool value)
+    {
+        canMove = true;
+    }
 
     public void OnEnable()
     {
