@@ -5,18 +5,26 @@ using UnityEngine.AI;
 
 public class BaseEnemy : MonoBehaviour, IDamagable, IMovable
 {
+    // Scriptable object voor de enemy data
     public EnemySO enemyData;
+
+    // Main interface die elke andere enemy gaat gebruiken
     private IEnemyBehaviour enemyBehaviour;
 
-    public bool canMove = true;
+    // Standaard variables
+    public bool canMove, canInteractPlayer;
+    public float health;
 
     public void Awake()
     {
-        
+        canMove = true;
+        canInteractPlayer = true;
 
+        // Zorgt ervoor dat de IEnemyBehaviour interface op elke enemy staat die deze script gebruikt
         if (TryGetComponent<IEnemyBehaviour>(out enemyBehaviour))
         {
             enemyBehaviour.Initialize(enemyData);
+            CreateEnemy();
         }
         else
         {
@@ -42,6 +50,27 @@ public class BaseEnemy : MonoBehaviour, IDamagable, IMovable
         {
             Die();
         }
+    }
+
+    // Zorgt ervoor dat de enemy damage kan doen
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player") && canInteractPlayer)
+        {
+            collision.gameObject.GetComponent<IDamagable>().TakeDamage(enemyData.enemyDamage);
+        }
+    }
+
+    private void CreateEnemy()
+    {
+        this.gameObject.name = enemyData.enemyName;
+
+        //var tempCol = this.gameObject.AddComponent<BoxCollider2D>();
+        //tempCol.size = this.transform.localScale;
+        //tempCol.isTrigger = true;
+
+        health = enemyData.enemyHealth;
     }
 
     public void Movable(bool value)
