@@ -6,12 +6,14 @@ public class SprinterEnemy : MonoBehaviour, IEnemyBehaviour
 {
     public EnemySO enemyData;
 
-    public bool canMove, canSprint;
+    public bool canSprint, isSprinting, canMove;
     public Transform player;
     public void Awake()
     {
+
         canMove = true;
         canSprint = false;
+        isSprinting = false;
         player = GameObject.Find("Player").transform;
     }
 
@@ -26,21 +28,27 @@ public class SprinterEnemy : MonoBehaviour, IEnemyBehaviour
         if (canMove)
         {
             transform.position = Vector2.MoveTowards(transform.position, player.position, enemyData.enemySpeed * Time.deltaTime);
-            StartCoroutine(SprintCooldown(2f, 5f));
+            if (!isSprinting)
+            {
+                StartCoroutine(SprintCooldown(2f, 5f));
+            }
+                
         }
-        else if (!canMove && canSprint)
+        if (canSprint)
         {
             transform.position = Vector2.MoveTowards(transform.position, player.position, enemyData.enemySpeed * 2 * Time.deltaTime);
+            canMove = false;
         }
     }
 
     IEnumerator SprintCooldown(float sprintDuration, float sprintDowntime)
     {
-        canMove = false;
+        isSprinting = true;
         canSprint = true;
         yield return new WaitForSeconds(sprintDuration);
         canSprint = false;
-        yield return new WaitForSeconds(sprintDowntime);
         canMove = true;
+        yield return new WaitForSeconds(sprintDowntime);
+        isSprinting = false;
     }
 }

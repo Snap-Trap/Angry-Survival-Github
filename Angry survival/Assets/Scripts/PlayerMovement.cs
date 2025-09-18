@@ -10,9 +10,9 @@ public class PlayerMovement : MonoBehaviour, IMovable
 
     public float speed = 5;
 
-    public Vector2 movementDirection = Vector2.zero;
-
     public bool canMove = true;
+
+    public Vector2 movementDirection = Vector2.zero;
 
     public void Update()
     {

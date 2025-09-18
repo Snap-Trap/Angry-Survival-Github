@@ -15,7 +15,8 @@ MonoBehaviour:
   enemyName: Jeffrey
   enemyDamage: 0
   enemyHealth: 0
-  enemySpeed: 1
+  enemySpeed: 1.2
+  canMove: 1
   xp: 0
   dropRatio: 0
   goldAmount: 0
