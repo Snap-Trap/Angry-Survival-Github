@@ -31,13 +31,11 @@ public class SprinterEnemy : MonoBehaviour, IEnemyBehaviour
             if (!isSprinting)
             {
                 StartCoroutine(SprintCooldown(2f, 5f));
-            }
-                
+            }   
         }
         if (canSprint)
         {
             transform.position = Vector2.MoveTowards(transform.position, player.position, enemyData.enemySpeed * 2 * Time.deltaTime);
-            canMove = false;
         }
     }
 

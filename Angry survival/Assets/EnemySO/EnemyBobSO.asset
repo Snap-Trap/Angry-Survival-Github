@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f57a2d48428fc634b9bae7be7e1a10e3, type: 3}
   m_Name: EnemyBobSO
   m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 7800648393270577495, guid: 21de9b6e513ad1548868f01614b8deb8, type: 3}
   enemyName: Bob
-  enemyDamage: 0
-  enemyHealth: 0
+  enemyDamage: 20
+  enemyHealth: 30
   enemySpeed: 1
-  canMove: 1
   xp: 0
   dropRatio: 0
   goldAmount: 0
+  spawnCost: 1

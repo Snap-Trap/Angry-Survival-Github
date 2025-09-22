@@ -4,15 +4,21 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
-public class PlayerMovement : MonoBehaviour, IMovable
+public class PlayerMovement : MonoBehaviour, IMovable, IDamagable
 {
     public InputAction moveLeft, moveRight, moveUp, moveDown;
 
-    public float speed = 5;
+    public float speed, health;
 
     public bool canMove = true;
 
     public Vector2 movementDirection = Vector2.zero;
+
+    public void Start()
+    {
+        health = 100f;
+        speed = 2;
+    }
 
     public void Update()
     {
@@ -43,6 +49,21 @@ public class PlayerMovement : MonoBehaviour, IMovable
             }
             transform.Translate(movementDirection * speed * Time.deltaTime);
         }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+        Debug.Log($"Player took {damage} damage, remaining health: {health}");
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+
+    public void Die()
+    {
+        Debug.Log("Player has died.");
     }
 
     public void Movable(bool value)

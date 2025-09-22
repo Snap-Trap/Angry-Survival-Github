@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f57a2d48428fc634b9bae7be7e1a10e3, type: 3}
   m_Name: EnemyJeffreySO
   m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 8670526772584138088, guid: 66ac4dbc47c62734ea54dbdbeaf42218, type: 3}
   enemyName: Jeffrey
-  enemyDamage: 0
-  enemyHealth: 0
+  enemyDamage: 20
+  enemyHealth: 10
   enemySpeed: 1.2
-  canMove: 1
   xp: 0
   dropRatio: 0
   goldAmount: 0
+  spawnCost: 2

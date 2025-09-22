@@ -14,7 +14,6 @@ public interface IMovable
 {
     public void Movable(bool value);
 }
-
 public interface IDroppable
 {
     public void Drop(float chance);

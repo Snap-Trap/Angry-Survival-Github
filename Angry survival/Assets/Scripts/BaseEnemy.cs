@@ -15,8 +15,13 @@ public class BaseEnemy : MonoBehaviour, IDamagable, IMovable
     public bool canMove, canInteractPlayer;
     public float health;
 
+    // Layermask
+
+    public LayerMask playerLayer;
+
     public void Awake()
     {
+        playerLayer = LayerMask.GetMask("playerLayer");
         canMove = true;
         canInteractPlayer = true;
 
@@ -38,14 +43,14 @@ public class BaseEnemy : MonoBehaviour, IDamagable, IMovable
     }
     public void Die()
     {
-        Debug.Log($"{gameObject.name} has died.");
-        Destroy(gameObject);
+        Debug.Log($"{this.gameObject.name} has died.");
+        Destroy(this.gameObject);
     }
 
     public void TakeDamage(float damage)
     {
         enemyData.enemyHealth -= damage;
-        Debug.Log($"{gameObject.name} took {damage} damage, remaining health: {enemyData.enemyHealth}");
+        Debug.Log($"{this.gameObject.name} took {damage} damage, remaining health: {enemyData.enemyHealth}");
         if (enemyData.enemyHealth <= 0)
         {
             Die();
@@ -54,10 +59,22 @@ public class BaseEnemy : MonoBehaviour, IDamagable, IMovable
 
     // Zorgt ervoor dat de enemy damage kan doen
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    //public void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    Debug.Log("Trigger is triggeredeth");
+    //    if (collision.gameObject.CompareTag("Player") && canInteractPlayer)
+    //    {
+    //        Debug.Log(gameObject.name + " hit " + collision.gameObject.name);
+    //        collision.gameObject.GetComponent<IDamagable>().TakeDamage(enemyData.enemyDamage);
+    //    }
+    //}
+
+    public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && canInteractPlayer)
+        Debug.Log("Trigger is triggeredeth");
+        if (collision.gameObject.layer == LayerMask.NameToLayer("playerLayer"))
         {
+            Debug.Log(gameObject.name + " hit " + collision.gameObject.name);
             collision.gameObject.GetComponent<IDamagable>().TakeDamage(enemyData.enemyDamage);
         }
     }
