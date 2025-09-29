@@ -43,31 +43,19 @@ public class BaseEnemy : MonoBehaviour, IDamagable, IMovable
     }
     public void Die()
     {
-        Debug.Log($"{this.gameObject.name} has died.");
-        Destroy(this.gameObject);
+        Debug.Log($"{gameObject.name} has died.");
+        Destroy(gameObject);
     }
 
     public void TakeDamage(float damage)
     {
         enemyData.enemyHealth -= damage;
-        Debug.Log($"{this.gameObject.name} took {damage} damage, remaining health: {enemyData.enemyHealth}");
+        Debug.Log($"{gameObject.name} took {damage} damage, remaining health: {enemyData.enemyHealth}");
         if (enemyData.enemyHealth <= 0)
         {
             Die();
         }
     }
-
-    // Zorgt ervoor dat de enemy damage kan doen
-
-    //public void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    Debug.Log("Trigger is triggeredeth");
-    //    if (collision.gameObject.CompareTag("Player") && canInteractPlayer)
-    //    {
-    //        Debug.Log(gameObject.name + " hit " + collision.gameObject.name);
-    //        collision.gameObject.GetComponent<IDamagable>().TakeDamage(enemyData.enemyDamage);
-    //    }
-    //}
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
@@ -81,11 +69,7 @@ public class BaseEnemy : MonoBehaviour, IDamagable, IMovable
 
     private void CreateEnemy()
     {
-        this.gameObject.name = enemyData.enemyName;
-
-        //var tempCol = this.gameObject.AddComponent<BoxCollider2D>();
-        //tempCol.size = this.transform.localScale;
-        //tempCol.isTrigger = true;
+        gameObject.name = enemyData.enemyName;
 
         health = enemyData.enemyHealth;
     }

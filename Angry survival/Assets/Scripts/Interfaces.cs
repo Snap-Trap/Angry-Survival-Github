@@ -10,6 +10,12 @@ public interface IEnemyBehaviour
     public void Movement();
 }
 
+public interface IWeaponBehaviour
+{
+    public void Initialize(WeaponSO weaponData, BaseWeapon baseWeapon);
+    public void Attack();
+}
+
 public interface IMovable
 {
     public void Movable(bool value);

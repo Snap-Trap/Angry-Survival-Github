@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 49d899d2b24d3eb42aa6c149643ee8d3, type: 3}
-  m_Name: Weapon
+  m_Name: WeaponAxe
   m_EditorClassIdentifier: 
-  weaponName: 
-  weaponDamage: 0
-  weaponInterval: 0
-  projectile: {fileID: 0}
+  weaponName: Garfar
+  weaponDamage: 40
+  attackCooldown: 5
+  projectile: {fileID: 4114898207031770200, guid: bdb8d7162b7ec7f4cbca66351b87159d, type: 3}

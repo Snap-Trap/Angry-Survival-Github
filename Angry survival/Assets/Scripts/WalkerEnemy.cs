@@ -12,7 +12,6 @@ public class WalkerEnemy : MonoBehaviour, IEnemyBehaviour
     {
         player = GameObject.Find("Player").transform;
     }
-
     public void Initialize(EnemySO enemyData)
     {
         this.enemyData = enemyData;
