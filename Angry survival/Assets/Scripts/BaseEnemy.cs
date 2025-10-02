@@ -5,6 +5,9 @@ using UnityEngine.AI;
 
 public class BaseEnemy : MonoBehaviour, IDamagable, IMovable
 {
+    // Roept andere scripts aan
+    public WaveSpawner waveSpawner;
+
     // Scriptable object voor de enemy data
     public EnemySO enemyData;
 
@@ -54,6 +57,8 @@ public class BaseEnemy : MonoBehaviour, IDamagable, IMovable
         if (enemyData.enemyHealth <= 0)
         {
             Die();
+            waveSpawner.enemyAmount--;
+            Debug.Log($"{gameObject.name} has met their demise");
         }
     }
 
