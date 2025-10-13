@@ -16,7 +16,7 @@ public class WaveSpawner : MonoBehaviour
     
     public float spawnTimer, spawnInterval;
 
-    public int waveLevel, maxEnemyAmount, enemyAmount, randPrefab;
+    public int waveLevel, maxEnemyAmount, randPrefab;
 
     public Transform spawnLocation;
 
@@ -35,7 +35,6 @@ public class WaveSpawner : MonoBehaviour
         spawnLocation = GameObject.FindGameObjectWithTag("Player").transform;
 
 
-        enemyAmount = 0;
         waveLevel = 1;
         maxEnemyAmount = 15;
         waveUpgradeTimer = 10f;
@@ -50,8 +49,12 @@ public class WaveSpawner : MonoBehaviour
         }
     }
 
+    // Wat verwacht je anders van een functie die BeginWave heet
     public void BeginWave()
     {
+        waveUpgradeTimer -= Time.fixedDeltaTime;
+        spawnTimer -= Time.fixedDeltaTime;
+
         if (waveUpgradeTimer <= 0)
         {
             // Zorgt ervoor dat de wave upgrade naarmate de tijd
@@ -60,17 +63,12 @@ public class WaveSpawner : MonoBehaviour
             waveUpgradeTimer = 10f;
             maxEnemyAmount += 2;
         }
-        else
-        {
-            waveUpgradeTimer -= Time.fixedDeltaTime;
-        }
-
         if (spawnTimer <= 0)
         {
-            Debug.Log("There are: " + enemyAmount + " enemies alive");
+            Debug.Log("There are: " + GameManagerScript.Instance.enemyAmount + " enemies alive");
             // Zorgt ervoor dat enemies alleen spawnen onder de max limit
             // Reminder, de spawner spawned altijd 1 enemy boven de max limit
-            if (enemyAmount <= maxEnemyAmount)
+            if (GameManagerScript.Instance.enemyAmount <= maxEnemyAmount)
             {
                 SpawnEnemies();
             }
@@ -79,12 +77,7 @@ public class WaveSpawner : MonoBehaviour
                 Debug.Log("You greedy batsard, the entire board is already filled with shit you shitling");
             }
         }
-        else
-        {
-            spawnTimer -= Time.fixedDeltaTime;
-        }
     }
-
     public void SpawnEnemies()
     {
         // Spawnt enemies rondom de speler
@@ -97,7 +90,7 @@ public class WaveSpawner : MonoBehaviour
         // Het daadwerkelijke spawn gedeelde
         randPrefab = Random.Range(0, enemyPrefabs.Count);
         Instantiate(enemyPrefabs[randPrefab], spawnPos, Quaternion.identity);
-        enemyAmount++;
+        GameManagerScript.Instance.enemyAmount++;
         Debug.Log("Something moderately wicked has cometh");
         spawnTimer = spawnInterval;
     }

@@ -5,6 +5,6 @@ public class WeaponSO : ScriptableObject
 {
     public string weaponName;
     public float weaponDamage;
-    public float attackCooldown;
+    public float weaponCooldown;
     public GameObject projectile;
 }

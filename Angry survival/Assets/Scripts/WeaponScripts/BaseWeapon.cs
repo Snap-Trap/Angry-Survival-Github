@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BaseWeapon : MonoBehaviour
 {
@@ -14,14 +15,14 @@ public class BaseWeapon : MonoBehaviour
     // Basic variables
     public int weaponLevel, maxLevel;
     public float cooldown;
-    private void Awake()
+    public void Awake()
     {
         weaponBehaviour = GetComponent<IWeaponBehaviour>();
 
         // ? zorgt ervoor dat je checkt of de reference gelinkt is
         weaponBehaviour?.Initialize(weaponData, this);
+        cooldown = weaponData.weaponCooldown;
     }
-
     public void FixedUpdate()
     {
         cooldown -= Time.fixedDeltaTime;
@@ -29,7 +30,19 @@ public class BaseWeapon : MonoBehaviour
         if (cooldown <= 0)
         {
             weaponBehaviour?.Attack();
-            cooldown = weaponData.attackCooldown;
+            cooldown = weaponData.weaponCooldown;
         }
+    }
+
+    public bool CanUpgrade() => weaponLevel < maxLevel;
+
+    public int GetWeaponLevel() => weaponLevel;
+ 
+    public void Upgrade()
+    {
+        if (!CanUpgrade()) return;
+
+        weaponLevel++;
+        Debug.Log("Upgraded weapon to level " + weaponLevel);
     }
 }

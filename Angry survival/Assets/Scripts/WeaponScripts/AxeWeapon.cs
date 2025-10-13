@@ -7,7 +7,7 @@ public class AxeWeapon : MonoBehaviour, IWeaponBehaviour
     public WeaponSO weaponData;
     public BaseWeapon baseWeapon;
 
-    public float bulletSpeed = 20f;
+    private float bulletSpeed = 5f;
 
     public Transform firePoint;
 
@@ -17,13 +17,21 @@ public class AxeWeapon : MonoBehaviour, IWeaponBehaviour
     }
     public void Attack()
     {
+        if (GameManagerScript.Instance.isFacingRight == true)
+        {
+            bulletSpeed = 5f;
+        }
+        else
+        {
+            bulletSpeed = -5f;
+        }
+
         Debug.Log("FOR VALHALLAAAAAAAAA!!!!!!!!!");
 
         var tempBall = Instantiate(weaponData.projectile, firePoint.position, Quaternion.identity);
-        tempBall.GetComponent<Rigidbody2D>().AddForce(new Vector2(bulletSpeed, 0f));
+        tempBall.GetComponent<Rigidbody2D>().AddForce(new Vector2(bulletSpeed, 0f), ForceMode2D.Impulse);
         Destroy(tempBall, 3f);
     }
-
     public void Initialize(WeaponSO weaponData, BaseWeapon baseWeapon)
     {
         this.weaponData = weaponData;

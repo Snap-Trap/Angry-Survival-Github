@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour, IMovable, IDamagable
 
     public bool canMove = true;
 
+    public bool isFacingRight;
+
     public Vector2 movementDirection = Vector2.zero;
 
     public void Start()
@@ -34,10 +36,13 @@ public class PlayerMovement : MonoBehaviour, IMovable, IDamagable
             if (moveLeft.ReadValue<float>() == 1)
             {
                 movementDirection.x = -speed;
+
+                GameManagerScript.Instance.isFacingRight = false;
             }
             if (moveRight.ReadValue<float>() == 1)
             {
                 movementDirection.x = speed;
+                GameManagerScript.Instance.isFacingRight = true;
             }
             if (moveUp.ReadValue<float>() == 1)
             {

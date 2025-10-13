@@ -22,6 +22,8 @@ public class BaseEnemy : MonoBehaviour, IDamagable, IMovable
 
     public LayerMask playerLayer;
 
+
+    // Pakt wat variablen voordat het project start
     public void Awake()
     {
         playerLayer = LayerMask.GetMask("playerLayer");
@@ -40,16 +42,20 @@ public class BaseEnemy : MonoBehaviour, IDamagable, IMovable
         }
     }
 
+    // Update voor alle movements van alle enemies
     public void Update()
     {
         enemyBehaviour.Movement();
     }
+
+    // Bro lees de fucking naam
     public void Die()
     {
         Debug.Log($"{gameObject.name} has died.");
         Destroy(gameObject);
     }
 
+    // Enemies kunnen damage krijgen
     public void TakeDamage(float damage)
     {
         enemyData.enemyHealth -= damage;
@@ -57,21 +63,25 @@ public class BaseEnemy : MonoBehaviour, IDamagable, IMovable
         if (enemyData.enemyHealth <= 0)
         {
             Die();
-            waveSpawner.enemyAmount--;
+            GameManagerScript.Instance.enemyAmount--;
             Debug.Log($"{gameObject.name} has met their demise");
         }
     }
 
+    // Zorgt ervoor dat enemies met de speler kunnen colliden
     public void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("Trigger is triggeredeth");
         if (collision.gameObject.layer == LayerMask.NameToLayer("playerLayer"))
         {
             Debug.Log(gameObject.name + " hit " + collision.gameObject.name);
+
+            // Mits de speler de IDamagable interface heeft dan pakt hij de TakeDamage functie
             collision.gameObject.GetComponent<IDamagable>().TakeDamage(enemyData.enemyDamage);
         }
     }
 
+    // Gonna be real with you chief, this function is kinda useless, I don't even know why this is here
     private void CreateEnemy()
     {
         gameObject.name = enemyData.enemyName;
@@ -79,6 +89,7 @@ public class BaseEnemy : MonoBehaviour, IDamagable, IMovable
         health = enemyData.enemyHealth;
     }
 
+    // Voor wanneer ik het spel op pauze wilt zetten gooi ik alle movement gewoon op 0
     public void Movable(bool value)
     {
         canMove = true;

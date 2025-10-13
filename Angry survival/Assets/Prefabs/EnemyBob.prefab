@@ -172,6 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 156e331540142364aa3e84d68c38f519, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waveSpawner: {fileID: 0}
   enemyData: {fileID: 11400000, guid: 8a42bdc2b9c17f545ab4be3bcb03b050, type: 2}
   canMove: 1
   canInteractPlayer: 0
