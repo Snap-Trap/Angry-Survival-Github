@@ -15,7 +15,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 8670526772584138088, guid: 66ac4dbc47c62734ea54dbdbeaf42218, type: 3}
   enemyName: Jeffrey
   enemyDamage: 20
-  enemyHealth: 10
+  enemyHealth: 20
   enemySpeed: 1.2
   xp: 0
   dropRatio: 0

@@ -26,6 +26,7 @@ public class BaseEnemy : MonoBehaviour, IDamagable, IMovable
     // Pakt wat variablen voordat het project start
     public void Awake()
     {
+        health = enemyData.enemyHealth;
         playerLayer = LayerMask.GetMask("playerLayer");
         canMove = true;
         canInteractPlayer = true;
@@ -58,9 +59,9 @@ public class BaseEnemy : MonoBehaviour, IDamagable, IMovable
     // Enemies kunnen damage krijgen
     public void TakeDamage(float damage)
     {
-        enemyData.enemyHealth -= damage;
-        Debug.Log($"{gameObject.name} took {damage} damage, remaining health: {enemyData.enemyHealth}");
-        if (enemyData.enemyHealth <= 0)
+        health -= damage;
+        Debug.Log($"{gameObject.name} took {damage} damage, remaining health: {health}");
+        if (health <= 0)
         {
             Die();
             GameManagerScript.Instance.enemyAmount--;
