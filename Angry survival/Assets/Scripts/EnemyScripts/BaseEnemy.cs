@@ -61,9 +61,11 @@ public class BaseEnemy : MonoBehaviour, IDamagable, IMovable
     {
         health -= damage;
         Debug.Log($"{gameObject.name} took {damage} damage, remaining health: {health}");
+
         if (health <= 0)
         {
             Die();
+            GameManagerScript.Instance.AddKill();
             GameManagerScript.Instance.enemyAmount--;
             Debug.Log($"{gameObject.name} has met their demise");
         }

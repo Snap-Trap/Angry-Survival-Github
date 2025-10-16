@@ -5,6 +5,16 @@ using UnityEngine;
 public class ProjectileScript : MonoBehaviour
 {
     public WeaponSO weaponData;
+
+    public int remainingDurability;
+
+    public float damage;
+
+    public void Initialize(int durability, float damage)
+    {
+        remainingDurability = durability;
+        this.damage = damage;
+    }
     public void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("The trigger holder has bestowed upon thee its power");
@@ -12,7 +22,14 @@ public class ProjectileScript : MonoBehaviour
         {
             Debug.Log(gameObject.name + " struck " + collision.gameObject.name);
 
-            collision.gameObject.GetComponent<IDamagable>().TakeDamage(weaponData.weaponDamage);
+            collision.gameObject.GetComponent<IDamagable>().TakeDamage(damage);
+            remainingDurability--;
+
+            if (remainingDurability <= 0)
+            {
+                Debug.Log("The Garfar has diedeth");
+                Destroy(gameObject);
+            }
         }
     }
 }

@@ -14,6 +14,8 @@ public interface IWeaponBehaviour
 {
     public void Initialize(WeaponSO weaponData, BaseWeapon baseWeapon);
     public void Attack();
+
+    public void UpgradeWeapon();
 }
 
 public interface IMovable

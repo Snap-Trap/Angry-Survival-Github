@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: WeaponAxe
   m_EditorClassIdentifier: 
   weaponName: Garfar
-  weaponDamage: 40
-  weaponCooldown: 3
+  weaponDamage: 15
+  weaponCooldown: 5
+  weaponDurability: 2
   projectile: {fileID: 4114898207031770200, guid: bdb8d7162b7ec7f4cbca66351b87159d, type: 3}
