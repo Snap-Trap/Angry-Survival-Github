@@ -6,19 +6,29 @@ using TMPro;
 public class GameManagerScript : MonoBehaviour
 {
     // Zorgt ervoor dat de GameManager script overal toegankelijk is
+    // Static zodat het overal toegankelijk is, INCLUDING andere scenes
     public static GameManagerScript Instance;
 
     // Voor de TextMashPro
-
     public TextMeshProUGUI scoreText, maxScoreText;
+    public static TextMeshProUGUI endScore;
 
     // Basic variables
-    public int enemyAmount, enemyKills, maxScore;
+    public int enemyKills;
+    public int enemyAmount, maxScore;
     public bool isFacingRight;
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void Start()
@@ -32,8 +42,15 @@ public class GameManagerScript : MonoBehaviour
     private void UpdateUI()
     {
         // Pretty much the "update" like the name implies
-        scoreText.text = "Score: " + enemyKills;
-        maxScoreText.text = "Max Score: " + maxScore;
+        if (scoreText != null)
+        {
+            scoreText.text = "Score: " + enemyKills;
+        }
+
+        if (maxScoreText != null)
+        {
+            maxScoreText.text = "Max Score: " + maxScore;
+        }
     }
 
     public void AddKill()
@@ -55,6 +72,15 @@ public class GameManagerScript : MonoBehaviour
             PlayerPrefs.Save();
         }
     }
+    public void ShowEndScore()
+    {
+        // My brother in retardation, this is where the end score is shown, like the fucking name implies
+        if (endScore != null)
+        {
+            endScore.text = "You have slayed a total of " + enemyKills + " fools. Your highest was a total of " + maxScore;
+        }
+    }
+
     public void ResetScore()
     {
         // What do you think?

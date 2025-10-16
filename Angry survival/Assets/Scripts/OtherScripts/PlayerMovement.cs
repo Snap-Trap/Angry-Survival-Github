@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour, IMovable, IDamagable
 {
@@ -69,7 +68,15 @@ public class PlayerMovement : MonoBehaviour, IMovable, IDamagable
     public void Die()
     {
         Debug.Log("Player has died.");
+        StartCoroutine(DeathSequence());
     }
+
+    private IEnumerator DeathSequence()
+    {
+        yield return new WaitForSeconds(0.2f);
+        SceneHandler.Instance.LoadScene(2);
+    }
+
 
     public void Movable(bool value)
     {
