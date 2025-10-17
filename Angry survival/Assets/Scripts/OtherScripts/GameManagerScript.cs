@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManagerScript : MonoBehaviour
 {
@@ -36,6 +37,7 @@ public class GameManagerScript : MonoBehaviour
         // Calls the update function at the start to make sure it's fucking updated to 0
         maxScore = PlayerPrefs.GetInt("MaxScore", 0);
         UpdateUI();
+
     }
 
 
@@ -79,6 +81,28 @@ public class GameManagerScript : MonoBehaviour
         {
             endScore.text = "You have slayed a total of " + enemyKills + " fools. Your highest was a total of " + maxScore;
         }
+    }
+
+    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "TheLevel")
+        {
+            scoreText = GameObject.Find("CurrentScore")?.GetComponent<TextMeshProUGUI>();
+            maxScoreText = GameObject.Find("MaxScore")?.GetComponent<TextMeshProUGUI>();
+        }
+        // Nodig voor wanneer je restart anders updaten de variablen niet
+
+        UpdateUI();
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     public void ResetScore()
