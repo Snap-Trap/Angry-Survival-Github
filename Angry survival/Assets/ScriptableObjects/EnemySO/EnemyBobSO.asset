@@ -18,6 +18,6 @@ MonoBehaviour:
   enemyHealth: 30
   enemySpeed: 1
   xp: 0
-  dropRatio: 15
+  dropRatio: 100
   goldAmount: 0
   spawnCost: 1
