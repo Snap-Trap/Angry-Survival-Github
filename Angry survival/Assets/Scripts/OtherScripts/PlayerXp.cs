@@ -6,8 +6,12 @@ public class PlayerXp : MonoBehaviour
 {
     public int currentXp, nextLevelXp, level;
 
+    public LevelUpUIManager levelUpUI;
+
     public void Start()
     {
+        levelUpUI = FindObjectOfType<LevelUpUIManager>();
+
         currentXp = 0;
         nextLevelXp = 5;
         level = 1;
@@ -27,6 +31,10 @@ public class PlayerXp : MonoBehaviour
     {
         level++;
         currentXp -= nextLevelXp;
+        nextLevelXp += 5;
+
         Debug.Log("You got to level " + level + " ,goodjob");
+
+        levelUpUI.ShowLevelUpChoices();
     }
 }

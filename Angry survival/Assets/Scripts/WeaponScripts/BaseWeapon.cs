@@ -9,9 +9,6 @@ public class BaseWeapon : MonoBehaviour
     // Scriptable object voor de weapons
     public WeaponSO weaponData;
 
-    // Temporary variable
-    public InputAction upgradeInput;
-
     // Interfaces
     private IWeaponBehaviour weaponBehaviour;
 
@@ -30,13 +27,18 @@ public class BaseWeapon : MonoBehaviour
         damage = weaponData.weaponDamage;
         durability = weaponData.weaponDurability;
     }
+
+    public void Start()
+    {
+        if (weaponLevel == 0)
+        {
+            // Disable the GameObject so its attack logic doesn’t run
+            gameObject.SetActive(false);
+        }
+    }
+
     public void FixedUpdate()
     {
-        if (upgradeInput.ReadValue<float>() == 1)
-        {
-            Debug.Log("Upgrade input detected");
-            Upgrade();
-        }
         cooldown -= Time.fixedDeltaTime;
 
         if (cooldown <= 0)
@@ -58,14 +60,5 @@ public class BaseWeapon : MonoBehaviour
         Debug.Log("Upgraded weapon to level " + weaponLevel);
 
         weaponBehaviour?.UpgradeWeapon();
-    }
-
-    public void OnEnable()
-    {
-        upgradeInput.Enable();
-    }
-    public void OnDisable()
-    {
-        upgradeInput.Disable();
     }
 }

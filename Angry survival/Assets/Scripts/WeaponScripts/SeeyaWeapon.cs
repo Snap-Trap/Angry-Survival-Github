@@ -19,6 +19,8 @@ public class SeeyaWeapon : MonoBehaviour, IWeaponBehaviour
     {
         this.weaponData = weaponData;
         this.baseWeapon = baseWeapon;
+
+        FindObjectOfType<LevelUpUIManager>()?.RegisterWeapon(baseWeapon);
     }
     public void Attack()
     {
@@ -36,6 +38,7 @@ public class SeeyaWeapon : MonoBehaviour, IWeaponBehaviour
 
         if (level == 1)
         {
+            gameObject.SetActive(true);
             return;
         }
     }

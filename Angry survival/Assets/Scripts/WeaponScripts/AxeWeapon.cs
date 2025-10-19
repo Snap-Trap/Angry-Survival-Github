@@ -18,6 +18,14 @@ public class AxeWeapon : MonoBehaviour, IWeaponBehaviour
     {
         firePoint = GameObject.Find("Player").transform;
     }
+    public void Initialize(WeaponSO weaponData, BaseWeapon baseWeapon)
+    {
+        this.weaponData = weaponData;
+        this.baseWeapon = baseWeapon;
+
+        FindObjectOfType<LevelUpUIManager>()?.RegisterWeapon(baseWeapon);
+    }
+
     public void Attack()
     {
         var facingDir = GameManagerScript.Instance.facingDirection;
@@ -36,11 +44,6 @@ public class AxeWeapon : MonoBehaviour, IWeaponBehaviour
 
         Destroy(tempBall, 4f);
     }
-    public void Initialize(WeaponSO weaponData, BaseWeapon baseWeapon)
-    {
-        this.weaponData = weaponData;
-        this.baseWeapon = baseWeapon;
-    }
 
     public void UpgradeWeapon()
     {
@@ -48,6 +51,7 @@ public class AxeWeapon : MonoBehaviour, IWeaponBehaviour
 
         if (level == 1)
         {
+            gameObject.SetActive(true);
             return;
         }
         else if (level == 2)

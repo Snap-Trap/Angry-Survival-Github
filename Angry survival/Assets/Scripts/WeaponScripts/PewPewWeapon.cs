@@ -9,9 +9,6 @@ public class PewPewWeapon : MonoBehaviour, IWeaponBehaviour
     public WeaponSO weaponData;
     public BaseWeapon baseWeapon;
 
-    // Temporary variable
-    public InputAction upgradeInput;
-
     // Interfaces
     private IWeaponBehaviour weaponBehaviour;
 
@@ -24,6 +21,13 @@ public class PewPewWeapon : MonoBehaviour, IWeaponBehaviour
     public void Awake()
     {
         firePoint = transform.parent.Find("PewFirePoint");
+    }
+    public void Initialize(WeaponSO weaponData, BaseWeapon baseWeapon)
+    {
+        this.weaponData = weaponData;
+        this.baseWeapon = baseWeapon;
+
+        FindObjectOfType<LevelUpUIManager>()?.RegisterWeapon(baseWeapon);
     }
 
     public void Attack()
@@ -43,19 +47,18 @@ public class PewPewWeapon : MonoBehaviour, IWeaponBehaviour
         Destroy(tempBullet, 2f);
     }
 
-    public void Initialize(WeaponSO weaponData, BaseWeapon baseWeapon)
-    {
-        this.weaponData = weaponData;
-        this.baseWeapon = baseWeapon;
-    }
-
     public void UpgradeWeapon()
     {
         int level = baseWeapon.GetWeaponLevel();
 
         if (level == 1)
         {
+            gameObject.SetActive(true);
             return;
+        }
+        else if (level == 2)
+        {
+            baseWeapon.damage += 2;
         }
         //else if (level == 2)
         //{
