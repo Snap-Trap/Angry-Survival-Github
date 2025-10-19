@@ -17,7 +17,10 @@ public class GameManagerScript : MonoBehaviour
     // Basic variables
     public int enemyKills;
     public int enemyAmount, maxScore;
-    public bool isFacingRight;
+
+    public Vector2 facingDirection = Vector2.right;
+
+
 
     private void Awake()
     {
@@ -37,7 +40,6 @@ public class GameManagerScript : MonoBehaviour
         // Calls the update function at the start to make sure it's fucking updated to 0
         maxScore = PlayerPrefs.GetInt("MaxScore", 0);
         UpdateUI();
-
     }
 
 

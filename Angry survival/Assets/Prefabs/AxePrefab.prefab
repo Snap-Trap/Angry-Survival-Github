@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -5790807607093963419}
   - component: {fileID: -2812572527823129516}
   m_Layer: 0
-  m_Name: Balls
+  m_Name: AxePrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

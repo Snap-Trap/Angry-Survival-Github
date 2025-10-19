@@ -20,14 +20,10 @@ public class AxeWeapon : MonoBehaviour, IWeaponBehaviour
     }
     public void Attack()
     {
-        if (GameManagerScript.Instance.isFacingRight == true)
-        {
-            bulletSpeed = 5f;
-        }
-        else
-        {
-            bulletSpeed = -5f;
-        }
+        var facingDir = GameManagerScript.Instance.facingDirection;
+
+        // Basically a new fancy way of saying if facing right (value above 0), bullet speed is positive, else negative
+        bulletSpeed = facingDir.x >= 0 ? 5f : -5f;
 
         Debug.Log("FOR VALHALLAAAAAAAAA!!!!!!!!!");
 
@@ -81,10 +77,6 @@ public class AxeWeapon : MonoBehaviour, IWeaponBehaviour
         else if (level == 9)
         {
             baseWeapon.damage += 20;
-        }
-        else if (level == 10)
-        {
-            ;
         }
     }
 }
