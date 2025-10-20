@@ -16,16 +16,15 @@ public class BaseEnemy : MonoBehaviour, IDamagable, IMovable
 
     // Standaard variables
     public bool canMove, canInteractPlayer;
-    public float health;
+    public float health, xpChance;
 
     // Layermask
-
     public LayerMask playerLayer;
-
 
     // Pakt wat variablen voordat het project start
     public void Awake()
     {
+        xpChance = enemyData.dropRatio;
         health = enemyData.enemyHealth;
         playerLayer = LayerMask.GetMask("playerLayer");
         canMove = true;
@@ -53,6 +52,13 @@ public class BaseEnemy : MonoBehaviour, IDamagable, IMovable
     public void Die()
     {
         Debug.Log($"{gameObject.name} has died.");
+
+        if (Random.value <= xpChance)
+        {
+            Instantiate(enemyData.xpPrefab, transform.position, Quaternion.identity);
+            Debug.Log($"{gameObject.name} dropped an XP orb.");
+        }
+
         Destroy(gameObject);
     }
 

@@ -16,8 +16,6 @@ public class PewPewWeapon : MonoBehaviour, IWeaponBehaviour
     public Transform firePoint;
     public float bulletSpeed;
 
-
-
     public void Awake()
     {
         firePoint = transform.parent.Find("PewFirePoint");
@@ -60,33 +58,17 @@ public class PewPewWeapon : MonoBehaviour, IWeaponBehaviour
         {
             baseWeapon.damage += 2;
         }
-        //else if (level == 2)
-        //{
-        //    baseWeapon.damage += 10;
-        //}
-        //else if (level == 3)
-        //{
-        //    baseWeapon.trueCooldown -= 1.5f;
-        //}
-        //else if (level == 4)
-        //{
-        //    baseWeapon.durability += 1;
-        //}
-        //else if (level == 5)
-        //{
-        //    baseWeapon.damage += 15;
-        //}
-        //else if (level == 7)
-        //{
-        //    baseWeapon.trueCooldown -= 1.5f;
-        //}
-        //else if (level == 8)
-        //{
-        //    baseWeapon.durability += 2;
-        //}
-        //else if (level == 9)
-        //{
-        //    baseWeapon.damage += 20;
-        //}
+        else if (level == 3)
+        {
+            baseWeapon.damage += 3;
+        }
+        else if (level == 4)
+        {
+            baseWeapon.cooldown -= 0.2f;
+        }
+        else if (level == 5)
+        {
+
+        }
     }
 }

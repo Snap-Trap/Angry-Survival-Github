@@ -8,8 +8,6 @@ public class EnemySO : ScriptableObject
     public float enemyDamage;
     public float enemyHealth;
     public float enemySpeed;
-    public int xp;
     public float dropRatio;
     public int goldAmount;
-    public int spawnCost;
 }
