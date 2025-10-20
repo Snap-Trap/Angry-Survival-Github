@@ -5,13 +5,17 @@ using static UnityEngine.GraphicsBuffer;
 
 public class SeeyaProjectileScript : MonoBehaviour
 {
-    public float speed, rotateSpeed, detectionRange;
+    private ProjectileScript projectileScript;
+
+    public bool canExplode = false;
+    public float speed, rotateSpeed, detectionRange, explosionRadius;
 
     private Rigidbody2D rb;
     private Transform target;
 
     public void Start()
     {
+        projectileScript = GetComponent<ProjectileScript>();
         rb = GetComponent<Rigidbody2D>();
         // Not going to put this in an update because it only needs to do it once this projectile is suicidal bruh
         FindNearestTarget();
@@ -70,10 +74,32 @@ public class SeeyaProjectileScript : MonoBehaviour
         target = nearestEnemy;
     }
 
+    public void Explode()
+    {
+        if (!canExplode) return;
+
+        Debug.Log("BOOM! SeeyaProjectile exploded.");
+
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
+        foreach (var hit in hits)
+        {
+            if (hit.gameObject.layer == LayerMask.NameToLayer("enemyLayer"))
+            {
+                hit.gameObject.GetComponent<IDamagable>()?.TakeDamage(projectileScript.damage);
+            }
+        }
+    }
+
     // For visualising this shit
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.cyan;
         Gizmos.DrawWireSphere(transform.position, detectionRange);
+
+        if (canExplode)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, explosionRadius);
+        }
     }
 }

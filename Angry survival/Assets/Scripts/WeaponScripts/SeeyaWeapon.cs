@@ -27,7 +27,18 @@ public class SeeyaWeapon : MonoBehaviour, IWeaponBehaviour
         var tempBullet = Instantiate(weaponData.projectile, firePoint.position, Quaternion.identity);
         var proj = tempBullet.GetComponent<ProjectileScript>();
         if (proj != null)
+        {
             proj.Initialize(baseWeapon.durability, baseWeapon.damage);
+        }
+
+        var seeyaProj = tempBullet.GetComponent<SeeyaProjectileScript>();
+        if (seeyaProj != null)
+        {
+            if (baseWeapon.GetWeaponLevel() >= 10)
+            {
+                seeyaProj.canExplode = true;
+            }
+        }
 
         Destroy(tempBullet, 5f);
     }
@@ -40,6 +51,43 @@ public class SeeyaWeapon : MonoBehaviour, IWeaponBehaviour
         {
             gameObject.SetActive(true);
             return;
+        }
+        else if (level == 2)
+        {
+            baseWeapon.damage += 5f;
+        }
+        else if (level == 3)
+        {
+            baseWeapon.trueCooldown -= 0.2f;
+        }
+        else if (level == 4)
+        {
+            baseWeapon.damage += 5f;
+        }
+        else if (level == 5)
+        {
+            baseWeapon.trueCooldown -= 0.2f;
+        }
+        else if (level == 6)
+        {
+            baseWeapon.damage += 5f;
+        }
+        else if (level == 7)
+        {
+            baseWeapon.trueCooldown -= 0.2f;
+        }
+        else if (level == 8)
+        {
+            baseWeapon.damage += 10f;
+        }
+        else if (level == 9)
+        {
+            baseWeapon.trueCooldown -= 0.2f;
+            baseWeapon.damage += 20f;
+        }
+        else if (level == 10)
+        {
+            // Makes projectile explode on impact
         }
     }
 

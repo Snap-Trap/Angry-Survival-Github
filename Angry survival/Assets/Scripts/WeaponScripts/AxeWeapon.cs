@@ -10,12 +10,14 @@ public class AxeWeapon : MonoBehaviour, IWeaponBehaviour
 
     // Basic variables
 
-    private float bulletSpeed = 5f;
+    private float bulletSpeed, projectileSize;
 
     public Transform firePoint;
 
     public void Awake()
     {
+        projectileSize = 1f;
+        bulletSpeed = 5f;
         firePoint = GameObject.Find("Player").transform;
     }
     public void Initialize(WeaponSO weaponData, BaseWeapon baseWeapon)
@@ -36,6 +38,7 @@ public class AxeWeapon : MonoBehaviour, IWeaponBehaviour
         Debug.Log("FOR VALHALLAAAAAAAAA!!!!!!!!!");
 
         var tempBall = Instantiate(weaponData.projectile, firePoint.position, Quaternion.identity);
+        tempBall.transform.localScale *= projectileSize;
         tempBall.GetComponent<Rigidbody2D>().AddForce(new Vector2(bulletSpeed, 0f), ForceMode2D.Impulse);
 
         var proj = tempBall.GetComponent<ProjectileScript>();
@@ -68,7 +71,7 @@ public class AxeWeapon : MonoBehaviour, IWeaponBehaviour
         }
         else if (level == 5)
         {
-            baseWeapon.damage += 15;
+            projectileSize += 0.5f;
         }
         else if (level == 7)
         {
@@ -81,6 +84,11 @@ public class AxeWeapon : MonoBehaviour, IWeaponBehaviour
         else if (level == 9)
         {
             baseWeapon.damage += 20;
+            baseWeapon.durability += 5;
+        }
+        else if (level == 10)
+        {
+            projectileSize += 1f;
         }
     }
 }

@@ -27,7 +27,12 @@ public class ProjectileScript : MonoBehaviour
 
             if (remainingDurability <= 0)
             {
-                Debug.Log("The Garfar has diedeth");
+                var seeya = GetComponent<SeeyaProjectileScript>();
+                if (seeya != null)
+                {
+                    seeya.Explode();
+                }
+
                 Destroy(gameObject);
             }
         }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WeaponPew
   m_EditorClassIdentifier: 
   weaponName: Pew
-  weaponDamage: 3
-  weaponCooldown: 1
+  weaponDamage: 4
+  weaponCooldown: 1.5
   weaponDurability: 1
   projectile: {fileID: 4114898207031770200, guid: e48f6204de70d1740b13037a46d151b7, type: 3}
