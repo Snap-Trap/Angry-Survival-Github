@@ -53,7 +53,9 @@ public class BaseEnemy : MonoBehaviour, IDamagable, IMovable
     {
         Debug.Log($"{gameObject.name} has died.");
 
-        if (Random.value <= xpChance)
+        // So apparently Random.value grabbed numbers between 0 and 1, and last time I checked, 15 is a lot bigger than 1
+        // Fuck Random.value, Random.Range the goat
+        if (Random.Range(0, 100) <= xpChance)
         {
             Instantiate(enemyData.xpPrefab, transform.position, Quaternion.identity);
             Debug.Log($"{gameObject.name} dropped an XP orb.");
