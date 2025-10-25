@@ -2,16 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PewPewWeapon : MonoBehaviour, IWeaponBehaviour
 {
     // Scriptable object voor de weapons
     public WeaponSO weaponData;
     public BaseWeapon baseWeapon;
-
-    // Interfaces
-    private IWeaponBehaviour weaponBehaviour;
 
     // Basic variables
     public Transform firePoint;
@@ -65,6 +61,9 @@ public class PewPewWeapon : MonoBehaviour, IWeaponBehaviour
 
             // Right bullet: slightly back and to the right
             SpawnBullet(firePoint.position + firePoint.right * sideOffset - firePoint.up * backOffset, firePoint.rotation);
+
+            // Unregister weapon after max level reached so you can't select it on upgrade
+            FindObjectOfType<LevelUpUIManager>()?.UnregisterWeapon(baseWeapon);
         }
     }
 
@@ -104,12 +103,7 @@ public class PewPewWeapon : MonoBehaviour, IWeaponBehaviour
         {
             baseWeapon.trueCooldown -= 0.2f;
         }
-        else if (level == 6)
-        {
-            // Coding should be done in the Attack function
-            // Basically it's a double shot now
-            return;
-        }
+        // Level 6 wordt gedaan in de Attack functie
         else if (level == 7)
         {
             baseWeapon.damage += 3;
@@ -122,11 +116,6 @@ public class PewPewWeapon : MonoBehaviour, IWeaponBehaviour
         {
             baseWeapon.damage += 5;
         }
-        else if (level == 10)
-        {
-            // Also done in Attack function
-            // Triple shot now, because how original
-            return;
-        }
+        // Level 10 wordt ook gedaan in de Attack functie
     }
 }

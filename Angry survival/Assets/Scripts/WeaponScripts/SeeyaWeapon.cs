@@ -37,6 +37,9 @@ public class SeeyaWeapon : MonoBehaviour, IWeaponBehaviour
             if (baseWeapon.GetWeaponLevel() >= 10)
             {
                 seeyaProj.canExplode = true;
+
+                // Unregister weapon after max level reached so you can't select it on upgrade
+                FindObjectOfType<LevelUpUIManager>()?.UnregisterWeapon(baseWeapon);
             }
         }
 
@@ -85,10 +88,7 @@ public class SeeyaWeapon : MonoBehaviour, IWeaponBehaviour
             baseWeapon.trueCooldown -= 0.2f;
             baseWeapon.damage += 20f;
         }
-        else if (level == 10)
-        {
-            // Makes projectile explode on impact
-        }
+        // Level 10 wordt gedaan in de Attack functie + andere script
     }
 
 

@@ -89,6 +89,9 @@ public class AxeWeapon : MonoBehaviour, IWeaponBehaviour
         else if (level == 10)
         {
             projectileSize += 1f;
+
+            // Unregister weapon after max level reached so you can't select it on upgrade
+            FindObjectOfType<LevelUpUIManager>()?.UnregisterWeapon(baseWeapon);
         }
     }
 }

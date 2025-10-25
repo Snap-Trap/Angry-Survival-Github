@@ -93,11 +93,58 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: 9fb827593ccc5d849b93235608144a5d, type: 2}
   weaponLevel: 0
-  maxLevel: 5
+  maxLevel: 10
   durability: 0
   cooldown: 0
   trueCooldown: 0
   damage: 0
+--- !u!1 &3477445654961444347
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4207011273685227868}
+  - component: {fileID: 1477621127061607408}
+  m_Layer: 6
+  m_Name: OctoWeaponHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4207011273685227868
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3477445654961444347}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 996548297151648617}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1477621127061607408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3477445654961444347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4348dec35c68d6c4fa40e3727a425909, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponData: {fileID: 0}
+  baseWeapon: {fileID: 0}
+  projectileCount: 4
 --- !u!1 &4905227573046549246
 GameObject:
   m_ObjectHideFlags: 0
@@ -159,7 +206,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: d492659b0d0a2ae40bf69613ebf1a02c, type: 2}
   weaponLevel: 0
-  maxLevel: 0
+  maxLevel: 10
   durability: 0
   cooldown: 0
   trueCooldown: 0
@@ -202,6 +249,7 @@ Transform:
   - {fileID: 4785912996847530146}
   - {fileID: 4976160568723438938}
   - {fileID: 3072675202077661170}
+  - {fileID: 4207011273685227868}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2910664690901484911
@@ -459,6 +507,7 @@ MonoBehaviour:
   currentXp: 0
   nextLevelXp: 0
   level: 0
+  xpBarFill: {fileID: 0}
   levelUpUI: {fileID: 0}
 --- !u!1 &5839144262179288002
 GameObject:
@@ -522,8 +571,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: cfcf997cdf0fb484caec42b2e8201fa2, type: 2}
-  weaponLevel: 0
-  maxLevel: 0
+  weaponLevel: 1
+  maxLevel: 10
   durability: 0
   cooldown: 0
   trueCooldown: 0

@@ -18,5 +18,5 @@ MonoBehaviour:
   enemyDamage: 20
   enemyHealth: 30
   enemySpeed: 1
-  dropRatio: 70
+  dropRatio: 15
   goldAmount: 0
