@@ -108,6 +108,15 @@ public class WaveSpawner : MonoBehaviour
             waveLevel++;
             waveUpgradeTimer = maxWaveTime;
             maxEnemyAmount += 2;
+
+            if (spawnInterval > 2f)
+            {
+                spawnInterval -= 0.2f;
+            }
+            else
+            {
+                return;
+            }
         }
 
         UpdatePoolState();
@@ -116,11 +125,11 @@ public class WaveSpawner : MonoBehaviour
     private void UpdatePoolState()
     {
         // State machines my beloved
-        if (waveLevel < 2)
+        if (waveLevel < 5)
         {
             SetActivePool(1);
         }
-        else if (waveLevel < 3)
+        else if (waveLevel < 10)
         {
             SetActivePool(2);
         }

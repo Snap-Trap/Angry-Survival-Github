@@ -382,8 +382,9 @@ MonoBehaviour:
   enemyPool3:
   - {fileID: 8160704945354643708, guid: 668734421b82d65458fe36e730160315, type: 3}
   - {fileID: 8670526772584138088, guid: 66ac4dbc47c62734ea54dbdbeaf42218, type: 3}
-  maxWaveTime: 30
-  spawnInterval: 2
+  - {fileID: 7800648393270577495, guid: 21de9b6e513ad1548868f01614b8deb8, type: 3}
+  maxWaveTime: 20
+  spawnInterval: 4
   playerRadius: 15
   waveLevel: 1
   maxEnemyAmount: 15
@@ -2672,6 +2673,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 76924255875664241, guid: 85fc728912553114c8f2218a4f8c4cc8, type: 3}
+      propertyPath: weaponLevel
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 611742528032933597, guid: 85fc728912553114c8f2218a4f8c4cc8, type: 3}
       propertyPath: xpBarFill
       value: 
