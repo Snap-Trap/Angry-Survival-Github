@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour, IMovable, IDamagable
 {
     public InputAction moveLeft, moveRight, moveUp, moveDown;
+
+    public Image healthBarFill;
 
     public float speed, health;
 
@@ -43,16 +46,22 @@ public class PlayerMovement : MonoBehaviour, IMovable, IDamagable
         transform.Translate(moveInput * speed * Time.deltaTime);
     }
 
-
-
     public void TakeDamage(float damage)
     {
         health -= damage;
         Debug.Log($"Player took {damage} damage, remaining health: {health}");
+
+        UpdateHealthBar();
+
         if (health <= 0)
         {
             Die();
         }
+    }
+
+    public void UpdateHealthBar()
+    {
+        healthBarFill.fillAmount = health / 100f;
     }
 
     public void Die()

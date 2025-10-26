@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WaveSpawner : MonoBehaviour
 {
@@ -13,8 +14,10 @@ public class WaveSpawner : MonoBehaviour
 
     // Basic variables
     [SerializeField] private float waveUpgradeTimer, playerRadius;
+
+    public Image waveBarFill;
     
-    public float spawnTimer, spawnInterval;
+    public float spawnTimer, spawnInterval, maxWaveTime;
 
     public int waveLevel, maxEnemyAmount, randPrefab;
 
@@ -34,15 +37,17 @@ public class WaveSpawner : MonoBehaviour
 
         spawnLocation = GameObject.FindGameObjectWithTag("Player").transform;
 
-
+        maxWaveTime = 30f;
         waveLevel = 1;
         maxEnemyAmount = 15;
-        waveUpgradeTimer = 10f;
+        waveUpgradeTimer = maxWaveTime;
     }
 
     // WE ARE USING FIXED UPDATE BECAUSE I DON'T TRUST FRAMES
     public void FixedUpdate()
     {
+        UpdateWaveBar();
+
         if (!pauseWave)
         {
             BeginWave();
@@ -60,7 +65,7 @@ public class WaveSpawner : MonoBehaviour
             // Zorgt ervoor dat de wave upgrade naarmate de tijd
             waveLevel++;
             Debug.Log("Wave got a little spicier...");
-            waveUpgradeTimer = 10f;
+            waveUpgradeTimer = maxWaveTime;
             maxEnemyAmount += 2;
         }
         if (spawnTimer <= 0)
@@ -77,6 +82,11 @@ public class WaveSpawner : MonoBehaviour
                 Debug.Log("You greedy batsard, the entire board is already filled with shit you shitling");
             }
         }
+    }
+
+    public void UpdateWaveBar()
+    {
+        waveBarFill.fillAmount = 1f - (waveUpgradeTimer / maxWaveTime);
     }
     public void SpawnEnemies()
     {
