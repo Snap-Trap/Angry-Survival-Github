@@ -1,23 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class AxeWeapon : MonoBehaviour, IWeaponBehaviour
+public class TrackoWeapon : MonoBehaviour, IWeaponBehaviour
 {
     public WeaponSO weaponData;
     public BaseWeapon baseWeapon;
 
     // Basic variables
 
-    private float bulletSpeed, projectileSize;
+    private float bulletSpeed;
 
     private Transform firePoint;
 
+    private Vector2 targetPosition;
+
+    public void Start()
+    {
+        bulletSpeed = 7f;
+    }
+
     public void Awake()
     {
-        projectileSize = 1f;
-        bulletSpeed = 1.5f;
         firePoint = GameObject.Find("Player").transform;
     }
     public void Initialize(WeaponSO weaponData, BaseWeapon baseWeapon)
@@ -30,22 +34,22 @@ public class AxeWeapon : MonoBehaviour, IWeaponBehaviour
 
     public void Attack()
     {
-        var facingDir = GameManagerScript.Instance.facingDirection;
+        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        targetPosition = new Vector2(mouseWorldPos.x, mouseWorldPos.y);
 
-        // Basically a new fancy way of saying if facing right (value above 0), bullet speed is positive, else negative
-        bulletSpeed = facingDir.x >= 0 ? bulletSpeed : -bulletSpeed;
+        Vector2 direction = (targetPosition - (Vector2)firePoint.position).normalized;
+        float directionAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-        var tempBall = Instantiate(weaponData.projectile, firePoint.position, Quaternion.identity);
-        tempBall.transform.localScale *= projectileSize;
-        tempBall.GetComponent<Rigidbody2D>().AddForce(new Vector2(bulletSpeed, 10f), ForceMode2D.Impulse);
+        var tempBullet = Instantiate(weaponData.projectile, firePoint.position, Quaternion.Euler(0f, 0f, directionAngle - 90f));
 
-        var proj = tempBall.GetComponent<ProjectileScript>();
+        tempBullet.GetComponent<Rigidbody2D>().AddForce(direction * bulletSpeed, ForceMode2D.Impulse);
+        var proj = tempBullet.GetComponent<ProjectileScript>();
         if (proj != null)
         {
             proj.Initialize(baseWeapon.durability, baseWeapon.damage);
         }
 
-        Destroy(tempBall, 4f);
+        Destroy(tempBullet, 3f);
     }
 
     public void UpgradeWeapon()
@@ -59,36 +63,30 @@ public class AxeWeapon : MonoBehaviour, IWeaponBehaviour
         }
         else if (level == 2)
         {
-            baseWeapon.damage += 10;
+            baseWeapon.damage += 4f;
         }
         else if (level == 3)
         {
-            baseWeapon.trueCooldown -= 1.5f;
+            baseWeapon.damage += 4f;
         }
         else if (level == 4)
         {
-            baseWeapon.durability += 1;
         }
         else if (level == 5)
         {
-            projectileSize += 0.5f;
         }
         else if (level == 7)
         {
-            baseWeapon.trueCooldown -= 1.5f;
         }
         else if (level == 8)
         {
-            baseWeapon.durability += 2;
         }
         else if (level == 9)
         {
-            baseWeapon.damage += 20;
-            baseWeapon.durability += 5;
+
         }
         else if (level == 10)
         {
-            projectileSize += 0.5f;
 
             // Unregister weapon after max level reached so you can't select it on upgrade
             FindObjectOfType<LevelUpUIManager>()?.UnregisterWeapon(baseWeapon);

@@ -20,8 +20,6 @@ public class GameManagerScript : MonoBehaviour
 
     public Vector2 facingDirection = Vector2.right;
 
-
-
     private void Awake()
     {
         if (Instance == null)
@@ -97,16 +95,6 @@ public class GameManagerScript : MonoBehaviour
         UpdateUI();
     }
 
-    private void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    private void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
-
     public void ResetScore()
     {
         // What do you think?
@@ -118,6 +106,17 @@ public class GameManagerScript : MonoBehaviour
     {
         // Deletes the max score from PlayerPrefs
         PlayerPrefs.DeleteKey("MaxScore");
+        maxScore = 0;
         UpdateUI();
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }

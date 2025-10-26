@@ -10,20 +10,22 @@ public class WaveSpawner : MonoBehaviour
     public EnemySO enemyData;
 
     // Makes a list of all the possible enemy prefabs
-    [SerializeField] public List<GameObject> enemyPrefabs = new List<GameObject>();
+    public List<GameObject> enemyPool1, enemyPool2, enemyPool3 = new List<GameObject>();
+    private List<GameObject> activePool = new List<GameObject>();
 
     // Basic variables
-    [SerializeField] private float waveUpgradeTimer, playerRadius;
-
-    public Image waveBarFill;
     
-    public float spawnTimer, spawnInterval, maxWaveTime;
+    public float maxWaveTime, spawnInterval, playerRadius;
 
-    public int waveLevel, maxEnemyAmount, randPrefab;
+    private float spawnTimer, waveUpgradeTimer;
+
+    public int waveLevel, maxEnemyAmount;
+
+    private bool pauseWave = false;
 
     public Transform spawnLocation;
 
-    public bool pauseWave;
+    public Image waveBarFill;
 
     // Code stuff
     public void Initialize(EnemySO enemyData)
@@ -33,14 +35,12 @@ public class WaveSpawner : MonoBehaviour
 
     private void Start()
     {
-        BeginWave();
-
         spawnLocation = GameObject.FindGameObjectWithTag("Player").transform;
 
-        maxWaveTime = 30f;
-        waveLevel = 1;
-        maxEnemyAmount = 15;
+        spawnTimer = spawnInterval;
         waveUpgradeTimer = maxWaveTime;
+
+        SetActivePool(1);
     }
 
     // WE ARE USING FIXED UPDATE BECAUSE I DON'T TRUST FRAMES
@@ -48,26 +48,39 @@ public class WaveSpawner : MonoBehaviour
     {
         UpdateWaveBar();
 
-        if (!pauseWave)
+        if (pauseWave)
         {
-            BeginWave();
+            return;
         }
+
+        WaveTimer();
+        WaveSpawning();
     }
 
-    // Wat verwacht je anders van een functie die BeginWave heet
-    public void BeginWave()
+    public void SpawnEnemies()
     {
-        waveUpgradeTimer -= Time.fixedDeltaTime;
-        spawnTimer -= Time.fixedDeltaTime;
-
-        if (waveUpgradeTimer <= 0)
+        if (activePool == null || activePool.Count == 0)
         {
-            // Zorgt ervoor dat de wave upgrade naarmate de tijd
-            waveLevel++;
-            Debug.Log("Wave got a little spicier...");
-            waveUpgradeTimer = maxWaveTime;
-            maxEnemyAmount += 2;
+            return;
         }
+
+            // Spawnt enemies rondom de speler
+        float angle = Random.Range(0f, Mathf.PI * 2f);
+        float x = Mathf.Cos(angle);
+        float y = Mathf.Sin(angle);
+        Vector2 spawnPos = new Vector2(transform.position.x * x, transform.position.y * y);
+        spawnPos = spawnPos.normalized * playerRadius + (Vector2)spawnLocation.position;
+
+        // Het daadwerkelijke spawn gedeelde
+        int randIndex = Random.Range(0, activePool.Count);
+        Instantiate(activePool[randIndex], spawnPos, Quaternion.identity);
+
+        GameManagerScript.Instance.enemyAmount++;
+        spawnTimer = spawnInterval;
+    }
+
+    private void WaveSpawning()
+    {
         if (spawnTimer <= 0)
         {
             Debug.Log("There are: " + GameManagerScript.Instance.enemyAmount + " enemies alive");
@@ -84,24 +97,60 @@ public class WaveSpawner : MonoBehaviour
         }
     }
 
+    private void WaveTimer()
+    {
+        waveUpgradeTimer -= Time.fixedDeltaTime;
+        spawnTimer -= Time.fixedDeltaTime;
+
+        if (waveUpgradeTimer <= 0)
+        {
+            // Zorgt ervoor dat de wave upgrade naarmate de tijd
+            waveLevel++;
+            waveUpgradeTimer = maxWaveTime;
+            maxEnemyAmount += 2;
+        }
+
+        UpdatePoolState();
+    }
+
+    private void UpdatePoolState()
+    {
+        // State machines my beloved
+        if (waveLevel < 2)
+        {
+            SetActivePool(1);
+        }
+        else if (waveLevel < 3)
+        {
+            SetActivePool(2);
+        }
+        else
+        {
+            SetActivePool(3);
+        }
+    }
+
+    private void SetActivePool(int poolNumber)
+    {
+        switch (poolNumber)
+        {
+            case 1:
+                activePool = enemyPool1;
+                break;
+            case 2:
+                activePool = enemyPool2;
+                break;
+            case 3:
+                activePool = enemyPool3;
+                break;
+            default:
+                activePool = enemyPool1;
+                break;
+        }
+    }
+
     public void UpdateWaveBar()
     {
         waveBarFill.fillAmount = 1f - (waveUpgradeTimer / maxWaveTime);
-    }
-    public void SpawnEnemies()
-    {
-        // Spawnt enemies rondom de speler
-        float angle = Random.Range(0f, Mathf.PI * 2f);
-        float x = Mathf.Cos(angle);
-        float y = Mathf.Sin(angle);
-        Vector2 spawnPos = new Vector2(transform.position.x * x, transform.position.y * y);
-        spawnPos = spawnPos.normalized * playerRadius + (Vector2)spawnLocation.position;
-
-        // Het daadwerkelijke spawn gedeelde
-        randPrefab = Random.Range(0, enemyPrefabs.Count);
-        Instantiate(enemyPrefabs[randPrefab], spawnPos, Quaternion.identity);
-        GameManagerScript.Instance.enemyAmount++;
-        Debug.Log("Something moderately wicked has cometh");
-        spawnTimer = spawnInterval;
     }
 }

@@ -16,7 +16,12 @@ public class LevelUpUIManager : MonoBehaviour
     // Registered weapons available for upgrades
     private List<BaseWeapon> availableWeapons = new List<BaseWeapon>();
 
-    void Start()
+    //public void Start()
+    //{
+    //    levelUpPanel.SetActive(false);
+    //}
+
+    public void Awake()
     {
         levelUpPanel.SetActive(false);
     }
