@@ -15,6 +15,10 @@ public class BaseWeapon : MonoBehaviour
     // Basic variables
     public int weaponLevel, maxLevel, durability;
     public float cooldown, trueCooldown, damage;
+    
+    public List<string> weaponDescriptionList = new List<string>();
+
+
     public void Awake()
     {
         weaponBehaviour = GetComponent<IWeaponBehaviour>();
