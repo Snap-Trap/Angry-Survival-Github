@@ -17,7 +17,6 @@ public class ProjectileScript : MonoBehaviour
     }
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("The trigger holder has bestowed upon thee its power");
         if (collision.gameObject.layer == LayerMask.NameToLayer("enemyLayer"))
         {
             Debug.Log(gameObject.name + " struck " + collision.gameObject.name);

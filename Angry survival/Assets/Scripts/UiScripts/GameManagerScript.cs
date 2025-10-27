@@ -15,8 +15,7 @@ public class GameManagerScript : MonoBehaviour
     public static TextMeshProUGUI endScore;
 
     // Basic variables
-    public int enemyKills;
-    public int enemyAmount, maxScore;
+    public int enemyAmount, maxScore, enemyKills;
 
     public Vector2 facingDirection = Vector2.right;
 
@@ -37,6 +36,7 @@ public class GameManagerScript : MonoBehaviour
     {
         // Calls the update function at the start to make sure it's fucking updated to 0
         maxScore = PlayerPrefs.GetInt("MaxScore", 0);
+        enemyKills = 0;
         UpdateUI();
     }
 
@@ -92,13 +92,6 @@ public class GameManagerScript : MonoBehaviour
         }
         // Nodig voor wanneer je restart anders updaten de variablen niet
 
-        UpdateUI();
-    }
-
-    public void ResetScore()
-    {
-        // What do you think?
-        enemyKills = 0;
         UpdateUI();
     }
 
