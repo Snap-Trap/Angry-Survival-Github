@@ -15,8 +15,8 @@ public class BaseEnemy : MonoBehaviour, IDamagable, IMovable
     private IEnemyBehaviour enemyBehaviour;
 
     // Standaard variables
-    public bool canMove, canInteractPlayer;
-    public float health, xpChance;
+    public bool canMove, canAttack;
+    public float health, xpChance, attackCooldown;
 
     // Layermask
     public LayerMask playerLayer;
@@ -28,7 +28,8 @@ public class BaseEnemy : MonoBehaviour, IDamagable, IMovable
         health = enemyData.enemyHealth;
         playerLayer = LayerMask.GetMask("playerLayer");
         canMove = true;
-        canInteractPlayer = true;
+        canAttack = true;
+        attackCooldown = 0.3f;
 
         // Zorgt ervoor dat de IEnemyBehaviour interface op elke enemy staat die deze script gebruikt
         if (TryGetComponent<IEnemyBehaviour>(out enemyBehaviour))
@@ -80,16 +81,37 @@ public class BaseEnemy : MonoBehaviour, IDamagable, IMovable
     }
 
     // Zorgt ervoor dat enemies met de speler kunnen colliden
-    public void OnTriggerEnter2D(Collider2D collision)
+    //public void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    Debug.Log("Trigger is triggeredeth");
+    //    if (collision.gameObject.layer == LayerMask.NameToLayer("playerLayer"))
+    //    {
+    //        Debug.Log(gameObject.name + " hit " + collision.gameObject.name);
+
+    //        // Mits de speler de IDamagable interface heeft dan pakt hij de TakeDamage functie
+    //        collision.gameObject.GetComponent<IDamagable>().TakeDamage(enemyData.enemyDamage);
+    //    }
+    //}
+
+    public void OnTriggerStay2D(Collider2D collision)
     {
-        Debug.Log("Trigger is triggeredeth");
         if (collision.gameObject.layer == LayerMask.NameToLayer("playerLayer"))
         {
-            Debug.Log(gameObject.name + " hit " + collision.gameObject.name);
+            if (canAttack)
+            {
+                Debug.Log(gameObject.name + " is attacking " + collision.gameObject.name);
+                collision.gameObject.GetComponent<IDamagable>().TakeDamage(enemyData.enemyDamage);
 
-            // Mits de speler de IDamagable interface heeft dan pakt hij de TakeDamage functie
-            collision.gameObject.GetComponent<IDamagable>().TakeDamage(enemyData.enemyDamage);
+                canAttack = false;
+                StartCoroutine(AttackCooldown());
+            }
         }
+    }
+
+    private IEnumerator AttackCooldown()
+    {
+        yield return new WaitForSeconds(attackCooldown);
+        canAttack = true;
     }
 
     // Gonna be real with you chief, this function is kinda useless, I don't even know why this is here

@@ -6,7 +6,7 @@ public class EndSceneUI : MonoBehaviour
 {
     public TextMeshProUGUI endScoreText;
 
-    void Awake()
+    public void Awake()
     {
         int maxScore = PlayerPrefs.GetInt("MaxScore", 0);
 

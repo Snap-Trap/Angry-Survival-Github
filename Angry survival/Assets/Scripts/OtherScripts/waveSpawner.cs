@@ -109,7 +109,7 @@ public class WaveSpawner : MonoBehaviour
             waveUpgradeTimer = maxWaveTime;
             maxEnemyAmount += 2;
 
-            if (spawnInterval > 2f)
+            if (spawnInterval > 1.4f)
             {
                 spawnInterval -= 0.2f;
             }
