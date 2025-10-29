@@ -89,7 +89,7 @@ public class PewPewWeapon : MonoBehaviour, IWeaponBehaviour
         }
         else if (level == 2)
         {
-            baseWeapon.damage += 2;
+            baseWeapon.damage += 3;
         }
         else if (level == 3)
         {

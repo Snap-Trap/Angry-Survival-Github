@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49d899d2b24d3eb42aa6c149643ee8d3, type: 3}
   m_Name: WeaponPew
   m_EditorClassIdentifier: 
+  weaponDescriptionList:
+  - Shoots a projectile in the direction you're walking
+  - Damage increased by 3
+  weaponIcon: {fileID: -8215926034309098400, guid: adf5b17918529e2448b4131b48adc1d6, type: 3}
   weaponName: Pew
   weaponDamage: 4
   weaponCooldown: 1.5

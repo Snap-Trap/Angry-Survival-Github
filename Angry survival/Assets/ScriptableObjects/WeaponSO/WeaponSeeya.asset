@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49d899d2b24d3eb42aa6c149643ee8d3, type: 3}
   m_Name: WeaponSeeya
   m_EditorClassIdentifier: 
-  weaponName: Seeya
+  weaponDescriptionList:
+  - Spawns a projectile that will seek out the most nearby enemy
+  - Damage increased by 5
+  weaponIcon: {fileID: -3145804537209659358, guid: 45f959f07c4097f47bbe34c2ed132347, type: 3}
+  weaponName: Seeker
   weaponDamage: 10
   weaponCooldown: 2
   weaponDurability: 1

@@ -30,21 +30,6 @@ public class OctoWeapon : MonoBehaviour, IWeaponBehaviour
     void Start()
     {
         firePoint = GameObject.Find("Player").transform;
-
-        weaponDescriptionList = new List<string>()
-        {
-            // Index 0 is level 1, index 1 is level 2, etc.
-            "Fires projectiles in 4 directions.",
-            "Reduces cooldown by 1 second.",
-            "Increases damage by 10.",
-            "Reduces cooldown by 1 second and increases durability by 1.",
-            "Increases projectile count by 2.",
-            "Increases damage by 15.",
-            "Reduces cooldown by 1 second.",
-            "Increases projectile count by 2.",
-            "Reduces cooldown by 1 second, increases damage by 20, and increases durability by 1.",
-            "Increases projectile count by 2. Max level reached!"
-        };
     }
 
     public void Initialize(WeaponSO weaponData, BaseWeapon baseWeapon)

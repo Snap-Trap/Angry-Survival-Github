@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49d899d2b24d3eb42aa6c149643ee8d3, type: 3}
   m_Name: WeaponAxe
   m_EditorClassIdentifier: 
+  weaponDescriptionList:
+  - Fires a heavy projectile that falls to the side
+  - Damage increased by 10
+  weaponIcon: {fileID: 1087340675619964687, guid: 5a1faf8adf4d1c74397208bb63706696, type: 3}
   weaponName: Garfar
   weaponDamage: 15
   weaponCooldown: 5

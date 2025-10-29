@@ -9,9 +9,11 @@ public class LevelUpUIManager : MonoBehaviour
     // This is the panel itself
     public GameObject levelUpPanel;
 
+    // This is for what gotta show up when you upgrade
     public Button optionButton1, optionButton2, optionButton3;
-
     public TextMeshProUGUI optionText1, optionText2, optionText3;
+    public Image optionImage1, optionImage2, optionImage3;
+    public TextMeshProUGUI optionDesc1, optionDesc2, optionDesc3;
 
     // Registered weapons available for upgrades
     private List<BaseWeapon> availableWeapons = new List<BaseWeapon>();
@@ -84,6 +86,8 @@ public class LevelUpUIManager : MonoBehaviour
         {
             var weaponOption = shuffled[0];
             optionText1.text = $"{weaponOption.weaponData.weaponName} Upgrade";
+            optionDesc1.text = weaponOption.weaponData.weaponDescriptionList[weaponOption.GetWeaponLevel()];
+            optionImage1.sprite = weaponOption.weaponData.weaponIcon;
             optionButton1.gameObject.SetActive(true);
             optionButton1.onClick.AddListener(() => ChooseWeapon(weaponOption));
         }
@@ -92,6 +96,8 @@ public class LevelUpUIManager : MonoBehaviour
         {
             var weaponOption = shuffled[1];
             optionText2.text = $"{weaponOption.weaponData.weaponName} Upgrade";
+            optionDesc2.text = weaponOption.weaponData.weaponDescriptionList[weaponOption.GetWeaponLevel()];
+            optionImage2.sprite = weaponOption.weaponData.weaponIcon;
             optionButton2.gameObject.SetActive(true);
             optionButton2.onClick.AddListener(() => ChooseWeapon(weaponOption));
         }
@@ -100,6 +106,8 @@ public class LevelUpUIManager : MonoBehaviour
         {
             var weaponOption = shuffled[2];
             optionText3.text = $"{weaponOption.weaponData.weaponName} Upgrade";
+            optionDesc3.text = weaponOption.weaponData.weaponDescriptionList[weaponOption.GetWeaponLevel()];
+            optionImage3.sprite = weaponOption.weaponData.weaponIcon;
             optionButton3.gameObject.SetActive(true);
             optionButton3.onClick.AddListener(() => ChooseWeapon(weaponOption));
         }
@@ -121,7 +129,6 @@ public class LevelUpUIManager : MonoBehaviour
 
         ClosePanel();
     }
-
     private void ClosePanel()
     {
         // Don't have to explain this

@@ -18,7 +18,6 @@ public class BaseWeapon : MonoBehaviour
     
     public List<string> weaponDescriptionList = new List<string>();
 
-
     public void Awake()
     {
         weaponBehaviour = GetComponent<IWeaponBehaviour>();
@@ -64,5 +63,11 @@ public class BaseWeapon : MonoBehaviour
         Debug.Log("Upgraded weapon to level " + weaponLevel);
 
         weaponBehaviour?.UpgradeWeapon();
+    }
+
+    public string GetWeaponDescription(int level)
+    {
+        int levelIndex = weaponLevel;
+        return weaponData.weaponDescriptionList[levelIndex];
     }
 }

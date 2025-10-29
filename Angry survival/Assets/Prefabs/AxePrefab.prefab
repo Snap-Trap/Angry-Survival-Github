@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6782775364908181344}
-  - component: {fileID: 1843640841001166085}
-  - component: {fileID: -9067659186586617205}
+  - component: {fileID: 6760221606818073415}
+  - component: {fileID: 4040363335895893771}
   - component: {fileID: -5790807607093963419}
   - component: {fileID: -2812572527823129516}
   m_Layer: 0
@@ -30,12 +30,12 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 4.2335424, y: 1.1676248, z: 0}
-  m_LocalScale: {x: 1.4, y: 1.4, z: 1}
+  m_LocalScale: {x: 1.8, y: 1.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
---- !u!212 &1843640841001166085
+--- !u!212 &6760221606818073415
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -76,19 +76,19 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.6603774, g: 0.45226553, b: 0.25958225, a: 1}
+  m_Sprite: {fileID: 1087340675619964687, guid: 5a1faf8adf4d1c74397208bb63706696, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.36, y: 0.62}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &-9067659186586617205
-CircleCollider2D:
+--- !u!60 &4040363335895893771
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -120,8 +120,24 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.6666667, y: 0}
+    oldSize: {x: 0.36, y: 0.62}
+    newSize: {x: 0.36, y: 0.62}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.24, y: 0.62}
+      - {x: -0.24, y: 0}
+      - {x: -0.12, y: 0}
+      - {x: 0.12, y: 0.26999998}
+      - {x: 0.12, y: 0.57}
+      - {x: 0.11, y: 0.62}
+  m_UseDelaunayMesh: 0
 --- !u!50 &-5790807607093963419
 Rigidbody2D:
   serializedVersion: 4
@@ -162,3 +178,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: 9fb827593ccc5d849b93235608144a5d, type: 2}
+  remainingDurability: 0
+  damage: 0

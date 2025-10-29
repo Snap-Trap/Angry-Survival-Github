@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49d899d2b24d3eb42aa6c149643ee8d3, type: 3}
   m_Name: WeaponTracko
   m_EditorClassIdentifier: 
+  weaponDescriptionList:
+  - A projectile that is aimed towards your mouse
+  - Damage increased by 4
+  weaponIcon: {fileID: 6513543857470551550, guid: 6df76d1b105f8d74aaf1710a488ae599, type: 3}
   weaponName: Tracko
   weaponDamage: 8
   weaponCooldown: 1
