@@ -16,7 +16,8 @@ public class BaseEnemy : MonoBehaviour, IDamagable, IMovable
 
     // Standaard variables
     public bool canMove, canAttack;
-    public float health, xpChance, attackCooldown;
+    public float health, xpChance, rareXpChance, healthDropChance, attackCooldown;
+    public GameObject healthPrefab;
 
     // Layermask
     public LayerMask playerLayer;
@@ -25,11 +26,13 @@ public class BaseEnemy : MonoBehaviour, IDamagable, IMovable
     public void Awake()
     {
         xpChance = enemyData.dropRatio;
+        rareXpChance = enemyData.dropRatio2;
         health = enemyData.enemyHealth;
         playerLayer = LayerMask.GetMask("playerLayer");
         canMove = true;
         canAttack = true;
         attackCooldown = 0.3f;
+        healthDropChance = 3f;
 
         // Zorgt ervoor dat de IEnemyBehaviour interface op elke enemy staat die deze script gebruikt
         if (TryGetComponent<IEnemyBehaviour>(out enemyBehaviour))
@@ -56,13 +59,21 @@ public class BaseEnemy : MonoBehaviour, IDamagable, IMovable
 
         // So apparently Random.value grabbed numbers between 0 and 1, and last time I checked, 15 is a lot bigger than 1
         // Fuck Random.value, Random.Range the goat
-        if (Random.Range(0, 100) <= xpChance)
+        var roll = Random.Range(0, 100);
+
+        if (roll <= rareXpChance)
+        {
+            Instantiate(enemyData.xpPrefab2, transform.position, Quaternion.identity);
+        }
+        else if (roll <= rareXpChance + healthDropChance)
+        {
+            Instantiate(healthPrefab, transform.position, Quaternion.identity);
+        }
+        else if (roll <= rareXpChance + healthDropChance + xpChance)
         {
             Instantiate(enemyData.xpPrefab, transform.position, Quaternion.identity);
-            Debug.Log($"{gameObject.name} dropped an XP orb.");
         }
-
-        Destroy(gameObject);
+            Destroy(gameObject);
     }
 
     // Enemies kunnen damage krijgen

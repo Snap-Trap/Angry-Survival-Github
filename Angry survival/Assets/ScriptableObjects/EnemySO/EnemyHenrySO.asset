@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: EnemyHenrySO
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 8160704945354643708, guid: 668734421b82d65458fe36e730160315, type: 3}
-  xpPrefab: {fileID: 3326558273498172485, guid: 0c79fda623b2bf344a93343c16e14625, type: 3}
+  xpPrefab: {fileID: 3619787278720715698, guid: f2a691bac13a3e54f9e718c467204acf, type: 3}
+  xpPrefab2: {fileID: 2110523514857846343, guid: b39a10675c3c73441834cbb9421fe551, type: 3}
   enemyName: Henry
   enemyDamage: 30
   enemyHealth: 60
   enemySpeed: 0.5
   dropRatio: 60
-  goldAmount: 0
+  dropRatio2: 15

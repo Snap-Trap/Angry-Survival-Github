@@ -178,7 +178,10 @@ MonoBehaviour:
   canAttack: 0
   health: 0
   xpChance: 0
+  rareXpChance: 0
+  healthDropChance: 0
   attackCooldown: 0
+  healthPrefab: {fileID: 869024500199042619, guid: 50f750f2450751d4a92966a6f5afb607, type: 3}
   playerLayer:
     serializedVersion: 2
     m_Bits: 0

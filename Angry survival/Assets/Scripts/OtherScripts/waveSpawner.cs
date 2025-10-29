@@ -64,7 +64,7 @@ public class WaveSpawner : MonoBehaviour
             return;
         }
 
-            // Spawnt enemies rondom de speler
+        // Spawnt enemies rondom de speler
         float angle = Random.Range(0f, Mathf.PI * 2f);
         float x = Mathf.Cos(angle);
         float y = Mathf.Sin(angle);

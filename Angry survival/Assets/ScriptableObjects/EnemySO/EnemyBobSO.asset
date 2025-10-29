@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: EnemyBobSO
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 7800648393270577495, guid: 21de9b6e513ad1548868f01614b8deb8, type: 3}
-  xpPrefab: {fileID: 3326558273498172485, guid: 0c79fda623b2bf344a93343c16e14625, type: 3}
+  xpPrefab: {fileID: 3619787278720715698, guid: f2a691bac13a3e54f9e718c467204acf, type: 3}
+  xpPrefab2: {fileID: 2110523514857846343, guid: b39a10675c3c73441834cbb9421fe551, type: 3}
   enemyName: Bob
   enemyDamage: 15
-  enemyHealth: 20
+  enemyHealth: 30
   enemySpeed: 1
-  dropRatio: 80
-  goldAmount: 0
+  dropRatio: 30
+  dropRatio2: 1

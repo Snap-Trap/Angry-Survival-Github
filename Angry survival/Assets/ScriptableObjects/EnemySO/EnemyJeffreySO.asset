@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 8670526772584138088, guid: 66ac4dbc47c62734ea54dbdbeaf42218, type: 3}
   xpPrefab: {fileID: 3326558273498172485, guid: 0c79fda623b2bf344a93343c16e14625, type: 3}
+  xpPrefab2: {fileID: 0}
   enemyName: Jeffrey
   enemyDamage: 10
   enemyHealth: 30
   enemySpeed: 1.2
   dropRatio: 50
-  goldAmount: 0
+  dropRatio2: 10

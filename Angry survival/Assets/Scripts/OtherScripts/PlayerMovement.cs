@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour, IMovable, IDamagable
 
     public Image healthBarFill;
 
-    public float speed, health;
+    private float speed, health;
 
     public bool canMove = true;
 
@@ -57,6 +57,17 @@ public class PlayerMovement : MonoBehaviour, IMovable, IDamagable
         {
             Die();
         }
+    }
+
+    public void AddHealth(float healthValue)
+    {
+        health += healthValue;
+
+        if (health > 100)
+        {
+            health = 100f;
+        }
+        UpdateHealthBar();
     }
 
     public void UpdateHealthBar()

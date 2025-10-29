@@ -39,6 +39,8 @@ public class AxeWeapon : MonoBehaviour, IWeaponBehaviour
         tempBall.transform.localScale *= projectileSize;
         tempBall.GetComponent<Rigidbody2D>().AddForce(new Vector2(bulletSpeed, 10f), ForceMode2D.Impulse);
 
+        tempBall.GetComponent<SpriteRenderer>().flipX = bulletSpeed < 0;
+
         var proj = tempBall.GetComponent<ProjectileScript>();
         if (proj != null)
         {
