@@ -13,9 +13,14 @@ public class WaveSpawner : MonoBehaviour
     public List<GameObject> enemyPool1, enemyPool2, enemyPool3 = new List<GameObject>();
     private List<GameObject> activePool = new List<GameObject>();
 
+    // Variables for special wave modifications
+
+    private float originalBaseHealth, originalSpawnInterval, originalBaseSpeed;
+    private WaveModifier currentModifier = WaveModifier.None;
+
     // Basic variables
-    
-    public float maxWaveTime, spawnInterval, playerRadius;
+
+    public float maxWaveTime, spawnInterval, playerRadius, eliteChance, specialWaveChance;
 
     private float spawnTimer, waveUpgradeTimer;
 
@@ -26,6 +31,8 @@ public class WaveSpawner : MonoBehaviour
     public Transform spawnLocation;
 
     public Image waveBarFill;
+
+    public GameObject eliteEnemyPrefab;
 
     // Code stuff
     public void Initialize(EnemySO enemyData)
@@ -64,19 +71,31 @@ public class WaveSpawner : MonoBehaviour
             return;
         }
 
-        // Spawnt enemies rondom de speler
-        float angle = Random.Range(0f, Mathf.PI * 2f);
-        float x = Mathf.Cos(angle);
-        float y = Mathf.Sin(angle);
-        Vector2 spawnPos = new Vector2(transform.position.x * x, transform.position.y * y);
-        spawnPos = spawnPos.normalized * playerRadius + (Vector2)spawnLocation.position;
+        int enemiesBurstSpawned = Random.Range(1, Mathf.Clamp(waveLevel / 2, 2, 5));
 
-        // Het daadwerkelijke spawn gedeelde
-        int randIndex = Random.Range(0, activePool.Count);
-        Instantiate(activePool[randIndex], spawnPos, Quaternion.identity);
 
-        GameManagerScript.Instance.enemyAmount++;
-        spawnTimer = spawnInterval;
+        for (int i = 0; i < enemiesBurstSpawned; i++)
+        {
+
+            // Spawnt enemies rondom de speler
+            float angle = Random.Range(0f, Mathf.PI * 2f);
+            float x = Mathf.Cos(angle);
+            float y = Mathf.Sin(angle);
+            Vector2 spawnPos = new Vector2(transform.position.x * x, transform.position.y * y);
+            spawnPos = spawnPos.normalized * playerRadius + (Vector2)spawnLocation.position;
+
+            // Het daadwerkelijke spawn gedeelde
+            bool spawnElite = Random.value < eliteChance && eliteEnemyPrefab != null;
+
+            GameObject prefabToSpawn = spawnElite ? eliteEnemyPrefab : activePool[Random.Range(0, activePool.Count)];
+
+            int randIndex = Random.Range(0, activePool.Count);
+            Instantiate(prefabToSpawn, spawnPos, Quaternion.identity);
+
+            GameManagerScript.Instance.enemyAmount++;
+
+            spawnTimer = spawnInterval + Random.Range(-0.5f, 0.5f);
+        }
     }
 
     private void WaveSpawning()
@@ -117,10 +136,81 @@ public class WaveSpawner : MonoBehaviour
             {
                 return;
             }
+            SpecialWaveModification();
         }
 
         UpdatePoolState();
     }
+
+    public enum WaveModifier
+    {
+        // So apparently this is for a sort of different yet similar state machine
+        None,
+        TankWave,
+        FastWave,
+        SpeedWave,
+        EliteWave
+    }
+
+    private void SpecialWaveModification()
+    {
+        if (originalBaseHealth == 0)
+        {
+            originalBaseHealth = enemyData.enemyHealth;
+        }
+
+        if (originalSpawnInterval == 0)
+        {
+            originalSpawnInterval = spawnInterval;
+        }
+
+        if (originalBaseSpeed == 0)
+        {
+            originalBaseSpeed = enemyData.enemySpeed;
+        }
+
+        // So that the default values are restored
+        enemyData.enemyHealth = originalBaseHealth;
+        enemyData.enemySpeed = originalBaseSpeed;
+        spawnInterval = originalSpawnInterval;
+        currentModifier = WaveModifier.None;
+        eliteChance = Mathf.Clamp(eliteChance - 0.15f, 0f, 1f);
+
+
+        // Special wave modifications
+        if (Random.value <= specialWaveChance)
+        {
+            currentModifier = (WaveModifier)Random.Range(1, 4);
+            Debug.Log("Tis a special wave today");
+        }
+        else
+        {
+            Debug.Log("Just a normal wave today");
+        }
+
+        switch (currentModifier)
+        {
+            case WaveModifier.TankWave:
+                enemyData.enemyHealth *= 1.5f;
+                Debug.Log("Tank wave incoming!");
+                break;
+
+            case WaveModifier.FastWave:
+                spawnInterval = Mathf.Max(0.8f, spawnInterval * 0.6f);
+                Debug.Log("Fast wave incoming!");
+                break;
+            case WaveModifier.SpeedWave:
+                enemyData.enemySpeed *= 1.15f;
+                Debug.Log("Speed wave incoming!");
+                break;
+
+            case WaveModifier.EliteWave:
+                eliteChance = Mathf.Clamp(eliteChance + 0.15f, 0f, 1f);
+                Debug.Log("Elite wave incoming!");
+                break;
+        }
+    }
+
 
     private void UpdatePoolState()
     {
