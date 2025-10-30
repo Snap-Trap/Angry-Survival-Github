@@ -71,23 +71,31 @@ public class TrackoWeapon : MonoBehaviour, IWeaponBehaviour
         }
         else if (level == 4)
         {
+            baseWeapon.trueCooldown -= 0.2f;
         }
         else if (level == 5)
         {
+            baseWeapon.damage += 4f;
+        }
+        else if (level == 6)
+        {
+            baseWeapon.trueCooldown -= 0.2f;
         }
         else if (level == 7)
         {
+            baseWeapon.trueCooldown -= 0.2f;
         }
         else if (level == 8)
         {
+            baseWeapon.damage += 6f;
         }
         else if (level == 9)
         {
-
+            baseWeapon.trueCooldown -= 0.2f;
         }
         else if (level == 10)
         {
-
+            baseWeapon.damage += 6f;
             // Unregister weapon after max level reached so you can't select it on upgrade
             FindObjectOfType<LevelUpUIManager>()?.UnregisterWeapon(baseWeapon);
         }

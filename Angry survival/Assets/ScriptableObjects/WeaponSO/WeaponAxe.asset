@@ -15,6 +15,14 @@ MonoBehaviour:
   weaponDescriptionList:
   - Fires a heavy projectile that falls to the side
   - Damage increased by 10
+  - Cooldown reduced by 1.5 seconds
+  - Pierces through 1 more enemy
+  - Increases the size of the projectile
+  - Damage increased by 15
+  - Cooldown reduced by 1.5 seconds
+  - Pierces through 2 more enemies
+  - Damage increasaed by 20. Pierces through 4 more enemies
+  - Increases the size of the projectile
   weaponIcon: {fileID: 1087340675619964687, guid: 5a1faf8adf4d1c74397208bb63706696, type: 3}
   weaponName: Garfar
   weaponDamage: 15

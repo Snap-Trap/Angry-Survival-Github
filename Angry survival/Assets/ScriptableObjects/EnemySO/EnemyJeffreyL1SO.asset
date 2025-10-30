@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f57a2d48428fc634b9bae7be7e1a10e3, type: 3}
+  m_Name: EnemyJeffreyL1SO
+  m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 8670526772584138088, guid: 66ac4dbc47c62734ea54dbdbeaf42218, type: 3}
+  xpPrefab: {fileID: 3619787278720715698, guid: f2a691bac13a3e54f9e718c467204acf, type: 3}
+  xpPrefab2: {fileID: 2110523514857846343, guid: b39a10675c3c73441834cbb9421fe551, type: 3}
+  enemyName: Jeffrey
+  enemyDamage: 10
+  enemyHealth: 30
+  enemySpeed: 1.2
+  dropRatio: 40
+  dropRatio2: 2

@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f57a2d48428fc634b9bae7be7e1a10e3, type: 3}
-  m_Name: EnemyBobSO
+  m_Name: EnemyHenryL1SO
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 7800648393270577495, guid: 21de9b6e513ad1548868f01614b8deb8, type: 3}
+  enemyPrefab: {fileID: 8160704945354643708, guid: 668734421b82d65458fe36e730160315, type: 3}
   xpPrefab: {fileID: 3619787278720715698, guid: f2a691bac13a3e54f9e718c467204acf, type: 3}
   xpPrefab2: {fileID: 2110523514857846343, guid: b39a10675c3c73441834cbb9421fe551, type: 3}
-  enemyName: Bob
-  enemyDamage: 15
-  enemyHealth: 30
-  enemySpeed: 1
-  dropRatio: 30
-  dropRatio2: 1
+  enemyName: Henry
+  enemyDamage: 30
+  enemyHealth: 60
+  enemySpeed: 0.5
+  dropRatio: 40
+  dropRatio2: 2

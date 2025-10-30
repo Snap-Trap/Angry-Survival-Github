@@ -15,6 +15,14 @@ MonoBehaviour:
   weaponDescriptionList:
   - Fires 4 projectiles in each 90 angles
   - Cooldown reduced by 1 second
+  - Damage increased by 10
+  - Pierces through 1 more enemy. Cooldown reduced by 1 second
+  - Now shoots 6 projectiles
+  - Damage increased by 15
+  - Cooldown reduced by 1 second
+  - Now shoots 8 projectiles
+  - Pierce and cooldown increased by 1. Damage increased by 20.
+  - Now shoots 10 projectiles.
   weaponIcon: {fileID: 6013112866550605446, guid: 1c77310fd5288174bb58042a367fab6a, type: 3}
   weaponName: Octo
   weaponDamage: 15

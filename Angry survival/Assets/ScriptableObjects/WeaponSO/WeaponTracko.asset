@@ -15,6 +15,14 @@ MonoBehaviour:
   weaponDescriptionList:
   - A projectile that is aimed towards your mouse
   - Damage increased by 4
+  - Damage increased by 4
+  - Cooldown reduced by 0.2 seconds
+  - Damage increased by 4
+  - Cooldown reduced by 0.2 seconds
+  - Cooldown reduced by 0.2 seconds
+  - Damage increased by 6
+  - Cooldown reduced by 0.2 seconds
+  - Damage increased by 6
   weaponIcon: {fileID: 6513543857470551550, guid: 6df76d1b105f8d74aaf1710a488ae599, type: 3}
   weaponName: Tracko
   weaponDamage: 8

@@ -16,7 +16,7 @@ public class PlayerXp : MonoBehaviour
         levelUpUI = FindObjectOfType<LevelUpUIManager>();
 
         currentXp = 0;
-        nextLevelXp = 5;
+        nextLevelXp = 3;
         level = 1;
     }
 

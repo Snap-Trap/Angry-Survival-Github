@@ -15,6 +15,14 @@ MonoBehaviour:
   weaponDescriptionList:
   - Shoots a projectile in the direction you're walking
   - Damage increased by 3
+  - Cooldown reduced by 0.2 seconds
+  - Damage increased by 3
+  - Cooldown reduced by 0.2 seconds
+  - Now fires 2 projectiles
+  - Damage increased by 3
+  - Cooldown reduced by 0.2 seconds
+  - Damage increased by 5
+  - Now fires 3 projectiles
   weaponIcon: {fileID: -8215926034309098400, guid: adf5b17918529e2448b4131b48adc1d6, type: 3}
   weaponName: Pew
   weaponDamage: 4

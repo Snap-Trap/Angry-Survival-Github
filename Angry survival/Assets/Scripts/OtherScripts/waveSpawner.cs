@@ -10,13 +10,13 @@ public class WaveSpawner : MonoBehaviour
     public EnemySO enemyData;
 
     // Makes a list of all the possible enemy prefabs
-    public List<GameObject> enemyPool1, enemyPool2, enemyPool3 = new List<GameObject>();
+    public List<GameObject> enemyPool1, enemyPool2, enemyPool3, enemyPool4, enemyPool5, enemyPool6, enemyPool7, enemyPool8, enemyPool9, enemyPool10, enemyPool11, enemyPoll12, enemyPoll13, enemyPoll14 = new List<GameObject>();
     private List<GameObject> activePool = new List<GameObject>();
 
     // Variables for special wave modifications
 
     private float originalBaseHealth, originalSpawnInterval, originalBaseSpeed;
-    private WaveModifier currentModifier = WaveModifier.None;
+    // private WaveModifier currentModifier = WaveModifier.None;
 
     // Basic variables
 
@@ -136,96 +136,140 @@ public class WaveSpawner : MonoBehaviour
             {
                 return;
             }
-            SpecialWaveModification();
+            // SpecialWaveModification();
         }
 
         UpdatePoolState();
     }
 
-    public enum WaveModifier
-    {
-        // So apparently this is for a sort of different yet similar state machine
-        None,
-        TankWave,
-        FastWave,
-        SpeedWave,
-        EliteWave
-    }
+    //public enum WaveModifier
+    //{
+    //    // So apparently this is for a sort of different yet similar state machine
+    //    None,
+    //    TankWave,
+    //    FastWave,
+    //    SpeedWave,
+    //    EliteWave
+    //}
 
-    private void SpecialWaveModification()
-    {
-        if (originalBaseHealth == 0)
-        {
-            originalBaseHealth = enemyData.enemyHealth;
-        }
+    //private void SpecialWaveModification()
+    //{
+    //    if (originalBaseHealth == 0)
+    //    {
+    //        originalBaseHealth = enemyData.enemyHealth;
+    //    }
 
-        if (originalSpawnInterval == 0)
-        {
-            originalSpawnInterval = spawnInterval;
-        }
+    //    if (originalSpawnInterval == 0)
+    //    {
+    //        originalSpawnInterval = spawnInterval;
+    //    }
 
-        if (originalBaseSpeed == 0)
-        {
-            originalBaseSpeed = enemyData.enemySpeed;
-        }
+    //    if (originalBaseSpeed == 0)
+    //    {
+    //        originalBaseSpeed = enemyData.enemySpeed;
+    //    }
 
-        // So that the default values are restored
-        enemyData.enemyHealth = originalBaseHealth;
-        enemyData.enemySpeed = originalBaseSpeed;
-        spawnInterval = originalSpawnInterval;
-        currentModifier = WaveModifier.None;
-        eliteChance = Mathf.Clamp(eliteChance - 0.15f, 0f, 1f);
+    //    // So that the default values are restored
+    //    enemyData.enemyHealth = originalBaseHealth;
+    //    enemyData.enemySpeed = originalBaseSpeed;
+    //    spawnInterval = originalSpawnInterval;
+    //    currentModifier = WaveModifier.None;
+    //    eliteChance = Mathf.Clamp(eliteChance - 0.15f, 0f, 1f);
 
 
-        // Special wave modifications
-        if (Random.value <= specialWaveChance)
-        {
-            currentModifier = (WaveModifier)Random.Range(1, 4);
-            Debug.Log("Tis a special wave today");
-        }
-        else
-        {
-            Debug.Log("Just a normal wave today");
-        }
+    //    // Special wave modifications
+    //    if (Random.value <= specialWaveChance)
+    //    {
+    //        currentModifier = (WaveModifier)Random.Range(1, 4);
+    //        Debug.Log("Tis a special wave today");
+    //    }
+    //    else
+    //    {
+    //        Debug.Log("Just a normal wave today");
+    //    }
 
-        switch (currentModifier)
-        {
-            case WaveModifier.TankWave:
-                enemyData.enemyHealth *= 1.5f;
-                Debug.Log("Tank wave incoming!");
-                break;
+    //    switch (currentModifier)
+    //    {
+    //        case WaveModifier.TankWave:
+    //            enemyData.enemyHealth *= 1.5f;
+    //            Debug.Log("Tank wave incoming!");
+    //            break;
 
-            case WaveModifier.FastWave:
-                spawnInterval = Mathf.Max(0.8f, spawnInterval * 0.6f);
-                Debug.Log("Fast wave incoming!");
-                break;
-            case WaveModifier.SpeedWave:
-                enemyData.enemySpeed *= 1.15f;
-                Debug.Log("Speed wave incoming!");
-                break;
+    //        case WaveModifier.FastWave:
+    //            spawnInterval = Mathf.Max(0.8f, spawnInterval * 0.6f);
+    //            Debug.Log("Fast wave incoming!");
+    //            break;
+    //        case WaveModifier.SpeedWave:
+    //            enemyData.enemySpeed *= 1.15f;
+    //            Debug.Log("Speed wave incoming!");
+    //            break;
 
-            case WaveModifier.EliteWave:
-                eliteChance = Mathf.Clamp(eliteChance + 0.15f, 0f, 1f);
-                Debug.Log("Elite wave incoming!");
-                break;
-        }
-    }
+    //        case WaveModifier.EliteWave:
+    //            eliteChance = Mathf.Clamp(eliteChance + 0.15f, 0f, 1f);
+    //            Debug.Log("Elite wave incoming!");
+    //            break;
+    //    }
+    //}
 
 
     private void UpdatePoolState()
     {
         // State machines my beloved
-        if (waveLevel < 5)
+        if (waveLevel < 4)
         {
             SetActivePool(1);
         }
-        else if (waveLevel < 10)
+        else if (waveLevel < 7)
         {
             SetActivePool(2);
         }
-        else
+        else if (waveLevel < 10)
         {
             SetActivePool(3);
+        }
+        else if (waveLevel < 13)
+        {
+            SetActivePool(4);
+        }
+        else if (waveLevel < 15)
+        {
+            SetActivePool(5);
+        }
+        else if (waveLevel < 20)
+        {
+            SetActivePool(6);
+        }
+        else if (waveLevel < 22)
+        {
+            SetActivePool(7);
+        }
+        else if (waveLevel < 24)
+        {
+            SetActivePool(8);
+        }
+        else if (waveLevel < 28)
+        {
+            SetActivePool(9);
+        }
+        else if (waveLevel < 29)
+        {
+            SetActivePool(10);
+        }
+        else if (waveLevel < 30)
+        {
+            SetActivePool(11);
+        }
+        else if (waveLevel < 32)
+        {
+            SetActivePool(12);
+        }
+        else if (waveLevel < 35)
+        {
+            SetActivePool(13);
+        }
+        else
+        {
+            SetActivePool(14);
         }
     }
 
@@ -241,6 +285,39 @@ public class WaveSpawner : MonoBehaviour
                 break;
             case 3:
                 activePool = enemyPool3;
+                break;
+            case 4:
+                activePool = enemyPool4;
+                break;
+            case 5:
+                activePool = enemyPool5;
+                break;
+            case 6:
+                activePool = enemyPool6;
+                break;
+            case 7:
+                activePool = enemyPool7;
+                break;
+            case 8:
+                activePool = enemyPool8;
+                break;
+            case 9:
+                activePool = enemyPool9;
+                break;
+            case 10:
+                activePool = enemyPool10;
+                break;
+            case 11:
+                activePool = enemyPool11;
+                break;
+            case 12:
+                activePool = enemyPoll12;
+                break;
+            case 13:
+                activePool = enemyPoll13;
+                break;
+            case 14:
+                activePool = enemyPoll14;
                 break;
             default:
                 activePool = enemyPool1;

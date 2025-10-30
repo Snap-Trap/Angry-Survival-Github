@@ -75,6 +75,10 @@ public class AxeWeapon : MonoBehaviour, IWeaponBehaviour
         {
             projectileSize += 0.5f;
         }
+        else if (level == 6)
+        {
+            baseWeapon.damage += 15;
+        }
         else if (level == 7)
         {
             baseWeapon.trueCooldown -= 1.5f;
@@ -86,7 +90,7 @@ public class AxeWeapon : MonoBehaviour, IWeaponBehaviour
         else if (level == 9)
         {
             baseWeapon.damage += 20;
-            baseWeapon.durability += 5;
+            baseWeapon.durability += 4;
         }
         else if (level == 10)
         {

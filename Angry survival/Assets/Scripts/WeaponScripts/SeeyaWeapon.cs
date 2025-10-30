@@ -86,7 +86,7 @@ public class SeeyaWeapon : MonoBehaviour, IWeaponBehaviour
         else if (level == 9)
         {
             baseWeapon.trueCooldown -= 0.2f;
-            baseWeapon.damage += 20f;
+            baseWeapon.damage += 10f;
         }
         // Level 10 wordt gedaan in de Attack functie + andere script
     }
