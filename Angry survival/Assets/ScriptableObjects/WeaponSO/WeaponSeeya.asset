@@ -16,16 +16,16 @@ MonoBehaviour:
   - Spawns a projectile that will seek out the most nearby enemy
   - Damage increased by 5
   - Cooldown reduced by 0.2 seconds
-  - Damage is increased by 5
+  - Damage is increased by 10
   - Cooldown reduced by 0.2 seconds
-  - Damage is increased by 5
+  - Damage is increased by 10
   - Cooldown reduced by 0.2 seconds
   - Damage is increased by 10
   - Cooldown reduced by 0.2 seconds. Damage increased by 10.
   - Projectiles now explode on hit
   weaponIcon: {fileID: -3145804537209659358, guid: 45f959f07c4097f47bbe34c2ed132347, type: 3}
   weaponName: Seeker
-  weaponDamage: 10
+  weaponDamage: 15
   weaponCooldown: 2
   weaponDurability: 1
   projectile: {fileID: 4905736097803093023, guid: decd5af48effeea49bea45773cbaa09a, type: 3}

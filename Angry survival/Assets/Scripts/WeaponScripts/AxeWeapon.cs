@@ -61,7 +61,7 @@ public class AxeWeapon : MonoBehaviour, IWeaponBehaviour
         }
         else if (level == 2)
         {
-            baseWeapon.damage += 10;
+            baseWeapon.damage += 15;
         }
         else if (level == 3)
         {
@@ -77,7 +77,7 @@ public class AxeWeapon : MonoBehaviour, IWeaponBehaviour
         }
         else if (level == 6)
         {
-            baseWeapon.damage += 15;
+            baseWeapon.damage += 25;
         }
         else if (level == 7)
         {
@@ -89,12 +89,12 @@ public class AxeWeapon : MonoBehaviour, IWeaponBehaviour
         }
         else if (level == 9)
         {
-            baseWeapon.damage += 20;
+            baseWeapon.damage += 25;
             baseWeapon.durability += 4;
         }
         else if (level == 10)
         {
-            projectileSize += 0.5f;
+            projectileSize += 1f;
 
             // Unregister weapon after max level reached so you can't select it on upgrade
             FindObjectOfType<LevelUpUIManager>()?.UnregisterWeapon(baseWeapon);

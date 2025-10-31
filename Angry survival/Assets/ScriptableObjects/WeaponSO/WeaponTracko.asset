@@ -14,18 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponDescriptionList:
   - A projectile that is aimed towards your mouse
-  - Damage increased by 4
-  - Damage increased by 4
-  - Cooldown reduced by 0.2 seconds
-  - Damage increased by 4
-  - Cooldown reduced by 0.2 seconds
-  - Cooldown reduced by 0.2 seconds
+  - Damage increased by 6
   - Damage increased by 6
   - Cooldown reduced by 0.2 seconds
   - Damage increased by 6
+  - Cooldown reduced by 0.2 seconds
+  - Cooldown reduced by 0.2 seconds
+  - Damage increased by 10
+  - Cooldown reduced by 0.2 seconds
+  - Damage increased by 15. Pierce increased by 2.
   weaponIcon: {fileID: 6513543857470551550, guid: 6df76d1b105f8d74aaf1710a488ae599, type: 3}
   weaponName: Tracko
-  weaponDamage: 8
+  weaponDamage: 16
   weaponCooldown: 1
   weaponDurability: 1
   projectile: {fileID: 3124730436640583421, guid: 4b1bad27d15d6cd4197862c6db715028, type: 3}

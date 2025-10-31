@@ -89,7 +89,7 @@ public class PewPewWeapon : MonoBehaviour, IWeaponBehaviour
         }
         else if (level == 2)
         {
-            baseWeapon.damage += 3;
+            baseWeapon.damage += 5;
         }
         else if (level == 3)
         {
@@ -97,7 +97,7 @@ public class PewPewWeapon : MonoBehaviour, IWeaponBehaviour
         }
         else if (level == 4)
         {
-            baseWeapon.damage += 3;
+            baseWeapon.damage += 5;
         }
         else if (level == 5)
         {
@@ -106,7 +106,7 @@ public class PewPewWeapon : MonoBehaviour, IWeaponBehaviour
         // Level 6 wordt gedaan in de Attack functie
         else if (level == 7)
         {
-            baseWeapon.damage += 3;
+            baseWeapon.damage += 5;
         }
         else if (level == 8)
         {
@@ -114,7 +114,8 @@ public class PewPewWeapon : MonoBehaviour, IWeaponBehaviour
         }
         else if (level == 9)
         {
-            baseWeapon.damage += 5;
+            baseWeapon.damage += 7;
+            baseWeapon.trueCooldown -= 0.1f;
         }
         // Level 10 wordt ook gedaan in de Attack functie
     }

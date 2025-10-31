@@ -61,6 +61,11 @@ public class BaseEnemy : MonoBehaviour, IDamagable, IMovable
         // Fuck Random.value, Random.Range the goat
         var roll = Random.Range(0, 100);
 
+        if (enemyData.enemyName == "Gillion")
+        {
+            waveSpawner.eliteAlreadySpawned = false;
+        }
+
         if (roll <= rareXpChance)
         {
             Instantiate(enemyData.xpPrefab2, transform.position, Quaternion.identity);

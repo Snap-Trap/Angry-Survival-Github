@@ -1036,9 +1036,9 @@ MonoBehaviour:
   - {fileID: 8756882337295111513, guid: 608da0fcba7d17b41a3defe6f6087ab0, type: 3}
   maxWaveTime: 20
   spawnInterval: 3
-  playerRadius: 15
-  eliteChance: 0
-  specialWaveChance: 0.2
+  playerRadius: 14
+  eliteChance: 1
+  specialWaveChance: 0
   waveLevel: 1
   maxEnemyAmount: 15
   spawnLocation: {fileID: 0}
@@ -1911,7 +1911,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -180}
+  m_AnchoredPosition: {x: 0, y: -140}
   m_SizeDelta: {x: 1200, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &868155869
@@ -2885,7 +2885,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 60}
+  m_AnchoredPosition: {x: 0, y: 100}
   m_SizeDelta: {x: 1200, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1567097272
@@ -3008,7 +3008,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -440}
+  m_AnchoredPosition: {x: 0, y: -400}
   m_SizeDelta: {x: 1200, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1569527832
@@ -4257,7 +4257,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5870846457452647826, guid: 85fc728912553114c8f2218a4f8c4cc8, type: 3}
       propertyPath: weaponLevel
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6265139078587789060, guid: 85fc728912553114c8f2218a4f8c4cc8, type: 3}
       propertyPath: weaponLevel

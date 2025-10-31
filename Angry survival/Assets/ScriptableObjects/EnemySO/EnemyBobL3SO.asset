@@ -19,5 +19,5 @@ MonoBehaviour:
   enemyDamage: 25
   enemyHealth: 70
   enemySpeed: 1
-  dropRatio: 40
+  dropRatio: 50
   dropRatio2: 10

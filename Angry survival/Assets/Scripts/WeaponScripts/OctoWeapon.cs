@@ -75,7 +75,7 @@ public class OctoWeapon : MonoBehaviour, IWeaponBehaviour
         }
         else if (level == 3)
         {
-            baseWeapon.damage += 10f;
+            baseWeapon.damage += 15f;
         }
         else if (level == 4)
         {
@@ -88,7 +88,7 @@ public class OctoWeapon : MonoBehaviour, IWeaponBehaviour
         }
         else if (level == 6)
         {
-            baseWeapon.damage += 15f;
+            baseWeapon.damage += 20f;
         }
         else if (level == 7)
         {
@@ -101,7 +101,7 @@ public class OctoWeapon : MonoBehaviour, IWeaponBehaviour
         else if (level == 9)
         {
             baseWeapon.trueCooldown -= 1f;
-            baseWeapon.damage += 20f;
+            baseWeapon.damage += 25f;
             baseWeapon.durability += 1;
         }
         else if (level == 10)

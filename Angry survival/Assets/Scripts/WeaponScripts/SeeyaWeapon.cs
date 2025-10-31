@@ -65,7 +65,7 @@ public class SeeyaWeapon : MonoBehaviour, IWeaponBehaviour
         }
         else if (level == 4)
         {
-            baseWeapon.damage += 5f;
+            baseWeapon.damage += 10f;
         }
         else if (level == 5)
         {
@@ -73,7 +73,7 @@ public class SeeyaWeapon : MonoBehaviour, IWeaponBehaviour
         }
         else if (level == 6)
         {
-            baseWeapon.damage += 5f;
+            baseWeapon.damage += 10f;
         }
         else if (level == 7)
         {

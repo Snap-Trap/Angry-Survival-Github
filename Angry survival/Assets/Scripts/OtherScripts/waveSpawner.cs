@@ -26,7 +26,7 @@ public class WaveSpawner : MonoBehaviour
 
     public int waveLevel, maxEnemyAmount;
 
-    private bool pauseWave = false;
+    public bool pauseWave, eliteAlreadySpawned;
 
     public Transform spawnLocation;
 
@@ -46,6 +46,9 @@ public class WaveSpawner : MonoBehaviour
 
         spawnTimer = spawnInterval;
         waveUpgradeTimer = maxWaveTime;
+
+        pauseWave = false;
+        eliteAlreadySpawned = false;
 
         SetActivePool(1);
     }
@@ -76,7 +79,6 @@ public class WaveSpawner : MonoBehaviour
 
         for (int i = 0; i < enemiesBurstSpawned; i++)
         {
-
             // Spawnt enemies rondom de speler
             float angle = Random.Range(0f, Mathf.PI * 2f);
             float x = Mathf.Cos(angle);
@@ -84,10 +86,28 @@ public class WaveSpawner : MonoBehaviour
             Vector2 spawnPos = new Vector2(transform.position.x * x, transform.position.y * y);
             spawnPos = spawnPos.normalized * playerRadius + (Vector2)spawnLocation.position;
 
-            // Het daadwerkelijke spawn gedeelde
-            bool spawnElite = Random.value < eliteChance && eliteEnemyPrefab != null;
+            bool spawnElite = false;
 
-            GameObject prefabToSpawn = spawnElite ? eliteEnemyPrefab : activePool[Random.Range(0, activePool.Count)];
+            if (!eliteAlreadySpawned && Random.value < eliteChance && eliteEnemyPrefab != null)
+            {
+                spawnElite = true;
+                eliteAlreadySpawned = true;
+            }
+
+            GameObject prefabToSpawn = spawnElite
+                ? eliteEnemyPrefab
+                : activePool[Random.Range(0, activePool.Count)];
+
+            GameObject spawnedEnemy = Instantiate(prefabToSpawn, spawnPos, Quaternion.identity);
+
+            if (spawnElite)
+            {
+                BaseEnemy elite = spawnedEnemy.GetComponent<BaseEnemy>();
+                if (elite != null)
+                {
+                    elite.waveSpawner = this;
+                }
+            }
 
             int randIndex = Random.Range(0, activePool.Count);
             Instantiate(prefabToSpawn, spawnPos, Quaternion.identity);

@@ -17,7 +17,7 @@ MonoBehaviour:
   xpPrefab2: {fileID: 7760597060953071596, guid: 4f66c07ad50229146b6939744aec2ab9, type: 3}
   enemyName: Gillion
   enemyDamage: 70
-  enemyHealth: 500
-  enemySpeed: 1.1
+  enemyHealth: 350
+  enemySpeed: 1.35
   dropRatio: 17
   dropRatio2: 80

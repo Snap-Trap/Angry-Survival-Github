@@ -63,11 +63,11 @@ public class TrackoWeapon : MonoBehaviour, IWeaponBehaviour
         }
         else if (level == 2)
         {
-            baseWeapon.damage += 4f;
+            baseWeapon.damage += 6f;
         }
         else if (level == 3)
         {
-            baseWeapon.damage += 4f;
+            baseWeapon.damage += 6f;
         }
         else if (level == 4)
         {
@@ -75,7 +75,7 @@ public class TrackoWeapon : MonoBehaviour, IWeaponBehaviour
         }
         else if (level == 5)
         {
-            baseWeapon.damage += 4f;
+            baseWeapon.damage += 6f;
         }
         else if (level == 6)
         {
@@ -87,7 +87,7 @@ public class TrackoWeapon : MonoBehaviour, IWeaponBehaviour
         }
         else if (level == 8)
         {
-            baseWeapon.damage += 6f;
+            baseWeapon.damage += 10f;
         }
         else if (level == 9)
         {
@@ -95,7 +95,8 @@ public class TrackoWeapon : MonoBehaviour, IWeaponBehaviour
         }
         else if (level == 10)
         {
-            baseWeapon.damage += 6f;
+            baseWeapon.damage += 15f;
+            baseWeapon.durability += 2;
             // Unregister weapon after max level reached so you can't select it on upgrade
             FindObjectOfType<LevelUpUIManager>()?.UnregisterWeapon(baseWeapon);
         }
