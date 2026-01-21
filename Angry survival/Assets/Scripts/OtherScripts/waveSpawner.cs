@@ -94,9 +94,7 @@ public class WaveSpawner : MonoBehaviour
                 eliteAlreadySpawned = true;
             }
 
-            GameObject prefabToSpawn = spawnElite
-                ? eliteEnemyPrefab
-                : activePool[Random.Range(0, activePool.Count)];
+            GameObject prefabToSpawn = spawnElite ? eliteEnemyPrefab : activePool[Random.Range(0, activePool.Count)];
 
             GameObject spawnedEnemy = Instantiate(prefabToSpawn, spawnPos, Quaternion.identity);
 

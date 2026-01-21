@@ -15,7 +15,7 @@ MonoBehaviour:
   weaponDescriptionList:
   - A projectile that is aimed towards your mouse
   - Damage increased by 6
-  - Damage increased by 6
+  - Damage increased by 6, pierce increased by 1
   - Cooldown reduced by 0.2 seconds
   - Damage increased by 6
   - Cooldown reduced by 0.2 seconds

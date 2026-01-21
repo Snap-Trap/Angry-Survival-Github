@@ -68,6 +68,7 @@ public class TrackoWeapon : MonoBehaviour, IWeaponBehaviour
         else if (level == 3)
         {
             baseWeapon.damage += 6f;
+            baseWeapon.durability += 1;
         }
         else if (level == 4)
         {
